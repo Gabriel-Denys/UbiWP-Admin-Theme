@@ -8,65 +8,57 @@
  * License: GPL2
  **/
 
- /** Functional */
+/** Functional */
 /* add_role('manager', __(
-    'Manager'),
-    array(
-        'read' => true, // Allows a user to read
-        'create_posts' => false, // Allows user to create new posts
-        'edit_posts' => false, // Allows user to edit their own posts
-    )
+'Manager'),
+array(
+'read' => true, // Allows a user to read
+'create_posts' => false, // Allows user to create new posts
+'edit_posts' => false, // Allows user to edit their own posts
+)
 );
 
 add_action('admin_menu', 'ubi_remove_admin_menus');
 function ubi_remove_admin_menus()
 {
-    remove_menu_page('edit-comments.php');
-    remove_menu_page('link-manager.php');
-    remove_menu_page('tools.php');
-    remove_menu_page('plugins.php');
-    remove_menu_page('users.php');
-    remove_menu_page('options-general.php');
-    remove_menu_page('edit.php');
-    remove_menu_page('index.php');
+remove_menu_page('edit-comments.php');
+remove_menu_page('link-manager.php');
+remove_menu_page('tools.php');
+remove_menu_page('plugins.php');
+remove_menu_page('users.php');
+remove_menu_page('options-general.php');
+remove_menu_page('edit.php');
+remove_menu_page('index.php');
 }
-
 
 function my_admin_menu()
 {
-    add_menu_page(
-        __('Status', 'my-textdomain'),
-        __('Status', 'my-textdomain'),
-        'read',
-        'status',
-        'my_admin_page_contents',
-        'dashicons-status',
-        3
-    );
+add_menu_page(
+__('Status', 'my-textdomain'),
+__('Status', 'my-textdomain'),
+'read',
+'status',
+'my_admin_page_contents',
+'dashicons-status',
+3
+);
 }
 function dashboard_redirect()
 {
-    wp_redirect(admin_url('admin.php?page=status'));
+wp_redirect(admin_url('admin.php?page=status'));
 }
 add_action('load-index.php', 'dashboard_redirect');
 
 function login_redirect($redirect_to, $request, $user)
 {
-    return admin_url('admin.php?page=status');
+return admin_url('admin.php?page=status');
 }
 add_filter('login_redirect', 'login_redirect', 10, 3);
 
 add_action('admin_menu', 'my_admin_menu');
-*/
-
-
-
-
-
+ */
 
 /* UI for Theme */
-
-
 
 function fl_dashboard()
 {
@@ -109,7 +101,7 @@ add_action('admin_head', 'fouc');
 function fouc()
 {
     $user = wp_get_current_user();
-        ?>
+    ?>
       <style type="text/css">
             .hidden {display:none;}
         </style>
@@ -120,24 +112,54 @@ function fouc()
 	    $('html').removeClass('hidden');
 	 });
         </script>
-  
+
+        <style>
+            .dashicons-current-profile
+            {
+                background-image: url(<?php echo plugin_dir_url(__FILE__) . 'img/profilepic.jpeg'; ?>);
+            }
+            </style>
+
 
     <?php
 
 }
 
+add_action('admin_head', 'blur_back' );
 
-add_action('adminmenu', 'ubi_admin_menu' );
+function blur_back()
+{
+    require_once ABSPATH . 'wp-admin/includes/class-wp-screen.php';
+require_once ABSPATH . 'wp-admin/includes/screen.php';
+$screen = get_current_screen();
 
-function ubi_admin_menu(){
-		
-    //echo '<a class="ab-item" aria-haspopup="true" href="http://test-site.local/wp-admin/profile.php"> <span class="display-name">admin</span><img alt="" src="http://1.gravatar.com/avatar/4bf699f30aaf1c5c6332f56334fb413f?s=26&amp;d=mm&amp;r=g" srcset="http://1.gravatar.com/avatar/4bf699f30aaf1c5c6332f56334fb413f?s=52&amp;d=mm&amp;r=g 2x" class="avatar avatar-26 photo" height="26" width="26" loading="lazy"></a>';
-  }
+// This actually works, it's just hidden via css
+ WP_Screen::get('')->render_screen_meta();
 
+}
+add_action('admin_menu', 'linked_url');
+function linked_url()
+{
+    global $current_user;
+    wp_get_current_user();
+    add_menu_page('linked_url', $current_user->user_login, 'read', 'admin_profile', '', 'dashicons-current-profile', 1);
+    add_submenu_page(
+        'admin_profile',
+        '', //page title
+        'Log Out', //menu title
+        'read', //capability,
+        'lougout', //menu slug
+        'log_out' //callback function
+    );
+}
 
-
-
-
-
-
+add_action('admin_menu', 'linkedurl_function');
+function linkedurl_function()
+{
+    global $submenu;
+    $submenu["admin_profile"][0][0] = "Your Profile";
+    $submenu["admin_profile"][0][2] = "/wp-admin/profile.php";
+    $submenu["admin_profile"][1][2] = wp_logout_url( home_url());
+   
+}
 ?>
