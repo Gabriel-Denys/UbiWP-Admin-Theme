@@ -5,8 +5,10 @@
     --primarycoloractive: #0f0092;
     --menu-font-resting: #ffffffab;
     --submenu-darker: #06003f;
+    --card-shadow: rgb(149 151 165 / 44%) 0px 8px 24px;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&display=swap');
 body {
     font-family: 'roboto';
     background: var(--primarycolor);
@@ -86,6 +88,11 @@ html.wp-toolbar {
     background: var(--primarycolor);
 }
 
+.menu-top>a {
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+}
+
 #adminmenu .wp-submenu li {
     padding-left: 10px!important;
 }
@@ -109,7 +116,7 @@ html.wp-toolbar {
 
 #toplevel_page_admin_profile {
     margin-bottom: 20px!important;
-    margin-top: 0px!important;
+    margin-top: auto!important;
 }
 
 .folded #toplevel_page_admin_profile>a>div.wp-menu-image.dashicons-before.dashicons-current-profile {
@@ -333,6 +340,25 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
     left: 140px;
 }
 
+.postbox .inside h2,
+.wrap [class$=icon32]+h2,
+.wrap h1,
+.wrap>h2:first-child {
+    font-size: 33px;
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+}
+
+.welcome-panel h3,
+.welcome-panel h2,
+.metabox-holder .postbox>h3,
+.metabox-holder .stuffbox>h3,
+.metabox-holder h2.hndle,
+.metabox-holder h3.hndle {
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+}
+
 
 /***** Page Content *****/
 
@@ -341,7 +367,7 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
     margin-right: 10px;
     height: calc(100% - 20px);
     width: calc(100% - 30px - 220px);
-    background: white;
+    background: #ffffff;
     position: fixed;
     border-radius: 10px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -443,28 +469,254 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
 
 /**** WP CONTENT UI ****/
 
-.wp-core-ui .button-primary {
+.wp-core-ui .button-primary,
+.wp-core-ui .button,
+.wp-core-ui .button-secondary {
     background-color: var(--primarycolor);
     border: 0px;
     border-radius: 10px;
+    color: white;
 }
 
-.wp-core-ui .button-primary:hover {
+.wp-core-ui .button-primary:hover,
+.wp-core-ui .button-secondary:hover,
+.wp-core-ui .button.hover,
+.wp-core-ui .button:hover {
     background-color: var(--primarycoloractive);
     border: 0px;
     border-radius: 10px;
+    color: white;
 }
 
 .welcome-panel,
 .postbox {
     border: 0px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-shadow: var(--card-shadow);
     border-radius: 10px;
-    ;
 }
 
 a {
     color: var(--primarycoloractive);
+}
+
+.postbox-header {
+    background-color: var(--submenu-darker);
+    border-radius: 10px;
+}
+
+.postbox-header * {
+    color: white;
+    font-weight: 400;
+}
+
+#quick-press>p {
+    padding-bottom: 10px!important;
+}
+
+.welcome-panel a:before {
+    font-family: "uicons-regular-rounded"!important;
+    color: var(--primarycolor)!important;
+}
+
+.welcome-panel .welcome-edit-page:before,
+.welcome-panel .welcome-write-blog:before {
+    content: "\f176";
+}
+
+.welcome-panel .welcome-add-page:before {
+    content: "\f101";
+}
+
+.welcome-panel .welcome-setup-home:before {
+    content: "\f1a3";
+}
+
+.welcome-panel .welcome-view-site:before {
+    content: "\f1b5";
+}
+
+.welcome-panel .welcome-widgets:before {
+    content: "\f1b8";
+}
+
+.welcome-panel .welcome-menus:before {
+    content: "\f1bf";
+}
+
+.welcome-panel .welcome-comments:before {
+    content: "\f151";
+}
+
+.welcome-panel .welcome-learn-more:before {
+    content: "\f173";
+}
+
+#bulk-titles div a:before,
+.notice-dismiss:before,
+.tagchecklist .ntdelbutton .remove-tag-icon:before,
+.welcome-panel .welcome-panel-close:before {
+    content: "\f15d";
+}
+
+#dashboard_right_now li>a:before,
+#dashboard_right_now li>span:before {
+    font-family: "uicons-regular-rounded"!important;
+    color: var(--primarycolor);
+}
+
+#dashboard_right_now .post-count a:before,
+#dashboard_right_now .post-count span:before {
+    content: "\f176";
+}
+
+#dashboard_right_now .comment-count a:before {
+    content: "\f151";
+}
+
+#dashboard_right_now .page-count a:before,
+#dashboard_right_now .page-count span:before {
+    content: "\f187";
+}
+
+th .comment-grey-bubble:before {
+    font-family: "uicons-regular-rounded"!important;
+    color: white;
+    content: "\f151";
+    font-size: 17px;
+    padding-left: 3px;
+}
+
+.column-comments .comment-count-approved,
+.column-comments .comment-count-no-comments,
+.column-response .comment-count-approved,
+.column-response .comment-count-no-comments {
+    background-color: var(--primarycolor);
+}
+
+.column-comments .post-com-count-approved:after,
+.column-comments .post-com-count-no-comments:after,
+.column-response .post-com-count-approved:after,
+.column-response .post-com-count-no-comments:after {
+    border-top: 5px solid var(--primarycolor);
+}
+
+.column-comments .comment-count-approved:hover,
+.column-comments .comment-count-no-comments:hover,
+.column-response .comment-count-approved:hover,
+.column-response .comment-count-no-comments:hover {
+    background-color: var(--primarycoloractive)!important;
+}
+
+.column-comments .post-com-count-approved:hover:after,
+.column-comments .post-com-count-no-comments:hover:after,
+.column-response .post-com-count-approved:hover:after,
+.column-response .post-com-count-no-comments:hover:after {
+    border-top: 5px solid var(--primarycoloractive)!important;
+}
+
+.site-health-progress {
+    width: 50px;
+    height: 50px;
+}
+
+.site-health-progress-wrapper {
+    margin-bottom: 0px;
+}
+
+input[type=color],
+input[type=date],
+input[type=datetime-local],
+input[type=datetime],
+input[type=email],
+input[type=month],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=time],
+input[type=url],
+input[type=week],
+select,
+textarea {
+    border-radius: 10px;
+    border: 0px solid var(--primarycolor);
+    color: #2c3338;
+    background: #ebebff;
+    box-shadow: 0px;
+}
+
+input[type=checkbox]:focus,
+input[type=color]:focus,
+input[type=date]:focus,
+input[type=datetime-local]:focus,
+input[type=datetime]:focus,
+input[type=email]:focus,
+input[type=month]:focus,
+input[type=number]:focus,
+input[type=password]:focus,
+input[type=radio]:focus,
+input[type=search]:focus,
+input[type=tel]:focus,
+input[type=text]:focus,
+input[type=time]:focus,
+input[type=url]:focus,
+input[type=week]:focus,
+select:focus,
+textarea:focus {
+    border: 0px solid var(--primarycolor);
+    box-shadow: 0 0 0 1px var(--primarycolor);
+}
+
+.plugin-card {
+    border: 0px;
+    box-shadow: var(--card-shadow);
+    border-radius: 10px!important;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column;
+}
+
+.plugin-card-bottom {
+    margin-top: auto;
+}
+
+.plugin-install>#the-list {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#menu-management .menu-edit,
+#menu-settings-column .accordion-container,
+.comment-ays,
+.feature-filter,
+.imgedit-group,
+.manage-menus,
+.menu-item-handle,
+.popular-tags,
+.stuffbox,
+.widget-inside,
+.widget-top,
+.widgets-holder-wrap,
+.wp-editor-container,
+p.popular-tags,
+table.widefat {
+    border: 0px;
+    border-radius: 10px;
+}
+
+.wp-list-table>thead {
+    background-color: var(--primarycolor);
+}
+
+.widefat tfoot tr td,
+.widefat tfoot tr th,
+.widefat thead tr td,
+.widefat thead tr th,
+th.sortable a,
+th.sorted a,
+.sorting-indicator:before {
+    color: white;
 }
 
 
