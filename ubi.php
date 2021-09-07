@@ -92,7 +92,9 @@ function my_admin_page_contents()
 /* ADD CSS STYLES TO PAGE */
 function ubi_dash_wp_admin_style()
 {
-    wp_enqueue_style('ubi_admin_css', plugins_url('/styles/styles.css', __FILE__));
+    wp_enqueue_style('ubi_main_css', plugins_url('/styles/styles.css', __FILE__));
+    wp_enqueue_style('ubi_admin_menu_css', plugins_url('/styles/AdminMenus.css', __FILE__));
+    wp_enqueue_style('ubi_wpcontent_css', plugins_url('/styles/WPContent.css', __FILE__));
 }
 
 add_action('admin_print_styles', 'ubi_dash_wp_admin_style');
