@@ -1,0 +1,55 @@
+.woocommerce-layout__header {
+    position: relative;
+    width: 100%;
+    top: 10px;
+}
+
+.woocommerce-inbox-message,
+.components-card {
+    overflow: hidden;
+    border-radius: 10px!important;
+    box-shadow: var(--card-shadow)!important;
+}
+
+.css-1xs3c37-CardUI,
+.woocommerce-inbox-message {
+    border: none!important;
+}
+
+.components-button.is-secondary,
+.components-button.is-tertiary {
+    border-radius: 10px;
+    border-color: var(--primarycoloractive);
+    background: var(--primarylight);
+    border-radius: 10px;
+    border: 1px solid var(--primarycoloractive)!important;
+    box-shadow: var(--card-shadow)!important;
+    color: var(--primarycoloractive);
+}
+
+.components-button.is-secondary:hover:not(:disabled),
+.components-button.is-tertiary:hover:not(:disabled) {
+    border: 1px solid var(--primarycolor)!important;
+    background: var(--primarylighthover);
+}
+
+#toplevel_page_woocommerce.wp-has-current-submenu>a::after {
+    content: "\f10f"!important;
+    color: white;
+    position: absolute;
+    font-family: var(--fontfamily)!important;
+    background-color: transparent!important;
+    border: 0px!important;
+    top: 10px;
+    left: 140px;
+}
+
+.woocommerce-page .wp-has-current-submenu:after {
+    border-right-color: transparent;
+    display: block;
+}
+
+table.wp-list-table span.wc-image::before {
+    font-family: var(--fontfamily);
+    content: var(--media);
+}

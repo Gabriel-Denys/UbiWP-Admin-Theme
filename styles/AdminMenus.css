@@ -1,52 +1,88 @@
 /***** DASHICONS *****/
 
 .dashicons-dashboard:before {
-    content: "\f165";
+    content: var(--dashboard);
 }
 
 .dashicons-admin-post:before {
-    content: "\f176";
+    content: var(--post);
 }
 
 .dashicons-admin-media:before {
-    content: "\f1e3";
+    content: var(--media);
 }
 
 .dashicons-admin-page:before {
-    content: "\f187";
+    content: var(--page);
 }
 
 .dashicons-admin-comments:before {
-    content: "\f151";
+    content: var(--comments);
+}
+
+.dashicons-archive:before {
+    content: var(--archive);
+}
+
+.dashicons-chart-bar:before {
+    content: var(--analytics);
 }
 
 .dashicons-admin-appearance:before {
-    content: "\f1dc";
+    content: var(--appearance);
 }
 
 .dashicons-admin-plugins:before {
-    content: "\f117";
+    content: var(--plugins);
 }
 
 .dashicons-admin-tools:before {
-    content: "\f135";
+    content: var(--tools);
 }
 
 .dashicons-admin-settings:before {
-    content: "\f209";
-}
-
-.dashicons-status:before {
-    content: "\f147";
+    content: var(--settings);
 }
 
 .dashicons,
 .dashicons-before:before {
-    font-family: "uicons-regular-rounded"!important;
+    font-family: var(--fontfamily)!important;
 }
 
 .dashicons-admin-users:before {
-    content: "\f257"!important;
+    content: var(--users);
+}
+
+.dashicons-megaphone:before {
+    content: var(--marketing)!important;
+}
+
+.dashicons-content:before {
+    content: var(--content)!important;
+}
+
+#toplevel_page_woocommerce>a>div.wp-menu-image.svg {
+    background-image: none !important;
+    /*filter: invert(100%);*/
+}
+
+#toplevel_page_woocommerce>a>div.wp-menu-image.svg::before {
+    display: inline-block;
+    line-height: 1;
+    font-weight: 400;
+    font-style: normal;
+    text-decoration: inherit;
+    text-transform: none;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    vertical-align: top;
+    text-align: center;
+    font-family: var(--fontfamily)!important;
+    content: var(--shop);
 }
 
 
@@ -209,14 +245,22 @@
     top: 10px;
     bottom: 30px;
     left: 30px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 #adminmenu .wp-has-current-submenu .wp-submenu .wp-submenu-head,
 #adminmenu .wp-menu-arrow,
 #adminmenu .wp-menu-arrow div,
-#adminmenu li.current a.menu-top,
+#adminmenu li.current a.menu-top:not(.toplevel_page_admin_profile),
 #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu {
-    background: var(--primarycoloractive);
+    background: var(--primarycoloractive)!important;
+    border-radius: 10px!important;
+}
+
+#toplevel_page_admin_profile>.toplevel_page_admin_profile {
+    background-color: #2c2568!important;
+    box-shadow: 0px!important;
     border-radius: 10px!important;
 }
 
@@ -226,13 +270,28 @@
     border-radius: 10px!important;
 }
 
-#adminmenu .wp-submenu {
-    background-color: var(--submenu-darker);
-    left: 170px;
+.wp-submenu {
+    background-color: var(--submenu-darker)!important;
 }
 
-#adminmenu a.menu-top:focus+.wp-submenu {
+.wp-not-current-submenu .wp-submenu.wp-submenu-wrap {
+    top: 0px!important;
     background-color: var(--submenu-darker);
+    max-height: 0;
+    top: 0px;
+    display: block!important;
+    transition: max-height 0.45s ease-in-out;
+    position: relative;
+    left: 0px;
+}
+
+.openmenudesktop {
+    display: block!important;
+    background-color: var(--submenu-darker);
+    left: 0px!important;
+    position: relative!important;
+    max-height: 500px!important;
+    transition: max-height 0.45s ease-in-out;
 }
 
 .js #adminmenu .opensub .wp-submenu,
@@ -316,7 +375,7 @@
 }
 
 #collapse-button .collapse-button-icon:after {
-    font-family: "uicons-regular-rounded"!important;
+    font-family: var(--fontfamily)!important;
     content: "\f110";
 }
 
@@ -339,12 +398,13 @@
 
 #toplevel_page_admin_profile>ul {
     background-color: #2c2568!important;
+    border-radius: 10px!important;
 }
 
 #adminmenu #toplevel_page_admin_profile.wp-has-submenu.wp-not-current-submenu:focus-within:after,
 #adminmenu #toplevel_page_admin_profile.wp-has-submenu.wp-not-current-submenu:hover:after {
     content: "\f111"!important;
-    font-family: "uicons-regular-rounded"!important;
+    font-family: var(--fontfamily)!important;
     background-color: transparent!important;
     border: 0px!important;
     top: 13px;
@@ -356,7 +416,16 @@
 ul#adminmenu a.wp-has-current-submenu:after,
 ul#adminmenu>li.current>a.current:after {
     content: "\f111"!important;
-    font-family: "uicons-regular-rounded"!important;
+    font-family: var(--fontfamily)!important;
+    background-color: transparent!important;
+    border: 0px!important;
+    top: 10px;
+    left: 140px;
+}
+
+#adminmenu li.wp-has-submenu.wp-not-current-submenu:focus-within:after {
+    content: ""!important;
+    font-family: var(--fontfamily)!important;
     background-color: transparent!important;
     border: 0px!important;
     top: 10px;
@@ -366,7 +435,7 @@ ul#adminmenu>li.current>a.current:after {
 ul#adminmenu a.wp-has-current-submenu:after,
 ul#adminmenu>li.current>a.current:after {
     content: ""!important;
-    font-family: "uicons-regular-rounded"!important;
+    font-family: var(--fontfamily)!important;
     background-color: transparent!important;
     border: 0px!important;
     top: 16px;
@@ -376,7 +445,7 @@ ul#adminmenu>li.current>a.current:after {
 ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
     content: "\f10f"!important;
     color: white;
-    font-family: "uicons-regular-rounded"!important;
+    font-family: var(--fontfamily)!important;
     background-color: transparent!important;
     border: 0px!important;
     top: 16px;
@@ -386,7 +455,7 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
 .folded #adminmenu a.wp-has-current-submenu.wp-menu-open:after {
     content: ""!important;
     color: white;
-    font-family: "uicons-regular-rounded"!important;
+    font-family: var(--fontfamily)!important;
     background-color: transparent!important;
     border: 0px!important;
     top: 16px;
@@ -397,7 +466,7 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
 .folded ul#adminmenu li.wp-has-submenu.wp-not-current-submenu:hover:after {
     content: ""!important;
     color: white;
-    font-family: "uicons-regular-rounded"!important;
+    font-family: var(--fontfamily)!important;
     background-color: transparent!important;
     border: 0px!important;
     top: 16px;
@@ -421,6 +490,15 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
 .metabox-holder h3.hndle {
     font-weight: 600;
     font-family: 'Nunito', sans-serif;
+}
+
+.wp-menu-separator {
+    display: none;
+}
+
+#adminmenu li.menu-top {
+    min-height: auto;
+    ;
 }
 
 
@@ -465,13 +543,13 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
         display: none!important;
     }
     #wpadminbar #wp-admin-bar-menu-toggle .ab-icon:before {
-        font-family: "uicons-regular-rounded"!important;
-        content: '\f1c9';
+        font-family: var(--fontfamily)!important;
+        content: var(--menu-burger);
         color: rgb(255, 255, 255);
         font-size: 30px;
     }
     .wp-responsive-open #wpadminbar #wp-admin-bar-menu-toggle .ab-icon:before {
-        content: "\f15c";
+        content: var(--close);
         color: white;
         font-size: 30px;
     }
@@ -482,7 +560,7 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
         right: auto;
     }
     #adminmenuwrap {
-        height: 100vh;
+        height: 100%;
         overflow-y: scroll;
     }
     .auto-fold #adminmenu .selected .wp-submenu {
@@ -494,7 +572,7 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
     .auto-fold #adminmenu a.menu-top+.wp-submenu {
         max-height: 0;
         display: block!important;
-        transition: max-height 0.45s ease-out;
+        transition: max-height 0.45s ease-in-out;
         overflow: hidden;
         left: 0px!important;
         padding: 0px!important;
@@ -503,7 +581,7 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
     }
     .auto-fold #adminmenu .selected .wp-submenu {
         max-height: 500px!important;
-        transition: max-height 0.45s ease-in;
+        transition: max-height 0.45s ease-in-out;
     }
     .wp-responsive-open #wpadminbar ul#wp-admin-bar-root-default>li {
         background-color: var(--primarycolor);
@@ -524,7 +602,7 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
     ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
         content: "\f10f"!important;
         color: white;
-        font-family: "uicons-regular-rounded"!important;
+        font-family: var(--fontfamily)!important;
         background-color: transparent!important;
         border: 0px!important;
         top: 20px;
@@ -533,7 +611,7 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
     /** drop down arrow on mobile when the submenu is open*/
     #adminmenu li.wp-has-submenu.wp-not-current-submenu.selected .wp-has-submenu:after {
         content: "\f10f"!important;
-        font-family: "uicons-regular-rounded"!important;
+        font-family: var(--fontfamily)!important;
         background-color: transparent!important;
         border: 0px!important;
         top: 15px;

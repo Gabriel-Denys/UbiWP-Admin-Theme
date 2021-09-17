@@ -9,14 +9,8 @@
  **/
 
 /** Functional */
-/* add_role('manager', __(
-'Manager'),
-array(
-'read' => true, // Allows a user to read
-'create_posts' => false, // Allows user to create new posts
-'edit_posts' => false, // Allows user to edit their own posts
-)
-);
+
+/*
 
 add_action('admin_menu', 'ubi_remove_admin_menus');
 function ubi_remove_admin_menus()
@@ -58,11 +52,13 @@ add_filter('login_redirect', 'login_redirect', 10, 3);
 add_action('admin_menu', 'my_admin_menu');
  */
 
+
+include plugin_dir_path( __FILE__ ) . 'includes/managerrole.php';
 /* UI for Theme */
 
 function fl_dashboard()
 {
-    wp_enqueue_style('uicons', 'https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css');
+
 }
 
 add_action('admin_init', 'fl_dashboard');
@@ -92,9 +88,12 @@ function my_admin_page_contents()
 /* ADD CSS STYLES TO PAGE */
 function ubi_dash_wp_admin_style()
 {
+    wp_enqueue_style('uicons-rr', plugins_url('/uicons/css/uicons-regular-rounded.css', __FILE__));
     wp_enqueue_style('ubi_main_css', plugins_url('/styles/styles.css', __FILE__));
     wp_enqueue_style('ubi_admin_menu_css', plugins_url('/styles/AdminMenus.css', __FILE__));
     wp_enqueue_style('ubi_wpcontent_css', plugins_url('/styles/WPContent.css', __FILE__));
+    wp_enqueue_style('ubi_woocommerce', plugins_url('/styles/woocommerce.css', __FILE__));
+    wp_enqueue_script('ubi_js', plugins_url('/js/main.js', __FILE__));
 }
 
 add_action('admin_print_styles', 'ubi_dash_wp_admin_style');
@@ -104,17 +103,16 @@ function fouc()
 {
     $user = wp_get_current_user();
     ?>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&display=swap" rel="stylesheet">
       <style type="text/css">
             .hidden {display:none;}
         </style>
-        <script type="text/javascript">
-         jQuery('html').addClass('hidden');
-
-	 jQuery(document).ready(function($) {
-	    $('html').removeClass('hidden');
-	 });
-        </script>
-
+     
         <style>
             .dashicons-current-profile
             {
@@ -127,16 +125,16 @@ function fouc()
 
 }
 
-add_action('admin_head', 'blur_back' );
+add_action('admin_head', 'blur_back');
 
 function blur_back()
 {
     require_once ABSPATH . 'wp-admin/includes/class-wp-screen.php';
-require_once ABSPATH . 'wp-admin/includes/screen.php';
-$screen = get_current_screen();
+    require_once ABSPATH . 'wp-admin/includes/screen.php';
+    $screen = get_current_screen();
 
 // This actually works, it's just hidden via css
- WP_Screen::get('')->render_screen_meta();
+    WP_Screen::get('')->render_screen_meta();
 
 }
 add_action('admin_menu', 'linked_url');
@@ -160,8 +158,10 @@ function linkedurl_function()
 {
     global $submenu;
     $submenu["admin_profile"][0][0] = "Your Profile";
-    $submenu["admin_profile"][0][2] = "/wp-admin/profile.php";
-    $submenu["admin_profile"][1][2] = wp_logout_url( home_url());
-   
+    $submenu["admin_profile"][0][2] = "profile.php";
+    $submenu["admin_profile"][1][2] = wp_logout_url(home_url());
+
 }
+
 ?>
+
