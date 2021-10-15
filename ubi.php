@@ -1,67 +1,15 @@
 <?php /**
- * Plugin Name: Ubi WP Dashboard
+ * Plugin Name: UbiWP Admin Panel Theme
  * Plugin URI: https://vertadigital.com
- * Description: Manage & Secure websites remotely
+ * Description: A Better WP Admin Panel
  * Version: 0.0.1
  * Author: Gabriel Denys
  * Author URI: https://vertadigital.com
- * License: GPL2
+ * License: Closed source and private (for time of beta testing)
  **/
 
-/** Functional */
-
-/*
-
-add_action('admin_menu', 'ubi_remove_admin_menus');
-function ubi_remove_admin_menus()
-{
-remove_menu_page('edit-comments.php');
-remove_menu_page('link-manager.php');
-remove_menu_page('tools.php');
-remove_menu_page('plugins.php');
-remove_menu_page('users.php');
-remove_menu_page('options-general.php');
-remove_menu_page('edit.php');
-remove_menu_page('index.php');
-}
-
-function my_admin_menu()
-{
-add_menu_page(
-__('Status', 'my-textdomain'),
-__('Status', 'my-textdomain'),
-'read',
-'status',
-'my_admin_page_contents',
-'dashicons-status',
-3
-);
-}
-function dashboard_redirect()
-{
-wp_redirect(admin_url('admin.php?page=status'));
-}
-add_action('load-index.php', 'dashboard_redirect');
-
-function login_redirect($redirect_to, $request, $user)
-{
-return admin_url('admin.php?page=status');
-}
-add_filter('login_redirect', 'login_redirect', 10, 3);
-
-add_action('admin_menu', 'my_admin_menu');
- */
-
-
-include plugin_dir_path( __FILE__ ) . 'includes/managerrole.php';
+include plugin_dir_path(__FILE__) . 'includes/managerrole.php';
 /* UI for Theme */
-
-function fl_dashboard()
-{
-
-}
-
-add_action('admin_init', 'fl_dashboard');
 
 add_filter('admin_bar_menu', 'replace_wordpress_howdy', 25);
 function replace_wordpress_howdy($wp_admin_bar)
@@ -93,7 +41,11 @@ function ubi_dash_wp_admin_style()
     wp_enqueue_style('ubi_admin_menu_css', plugins_url('/styles/AdminMenus.css', __FILE__));
     wp_enqueue_style('ubi_wpcontent_css', plugins_url('/styles/WPContent.css', __FILE__));
     wp_enqueue_style('ubi_woocommerce', plugins_url('/styles/woocommerce.css', __FILE__));
+    $user = wp_get_current_user();
     wp_enqueue_script('ubi_js', plugins_url('/js/main.js', __FILE__));
+    if (in_array('shop_manager', (array) $user->roles)) {
+        //wp_enqueue_script('ubi_js', plugins_url('/js/main.js', __FILE__));
+    }
 }
 
 add_action('admin_print_styles', 'ubi_dash_wp_admin_style');
@@ -112,7 +64,7 @@ function fouc()
       <style type="text/css">
             .hidden {display:none;}
         </style>
-     
+
         <style>
             .dashicons-current-profile
             {
@@ -124,8 +76,9 @@ function fouc()
     <?php
 
 }
-
-add_action('admin_head', 'blur_back');
+//Later need to enable screen meta
+/*
+add_action('admin_head', 'edit_screen_meta');
 
 function blur_back()
 {
@@ -136,7 +89,7 @@ function blur_back()
 // This actually works, it's just hidden via css
     WP_Screen::get('')->render_screen_meta();
 
-}
+}*/
 add_action('admin_menu', 'linked_url');
 function linked_url()
 {
@@ -164,4 +117,3 @@ function linkedurl_function()
 }
 
 ?>
-

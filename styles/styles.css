@@ -1,52 +1,60 @@
-    /***** ROOT VARIABLES ******/
-    
-     :root {
-        --primarycolor: #06003f;
-        --primarycoloractive: #0f0092;
-        --primarylight: #f1efff;
-        --primarylighthover: #ebe8fd;
-        --menu-font-resting: #ffffffab;
-        --submenu-darker: #06003f;
-        --wp-admin-theme-color: #0f0092!important;
-        --wp-admin-theme-color-darker-10: #06003f!important;
-        --fontfamily: "uicons-regular-rounded"!important;
-        /*--card-shadow: rgb(149 151 165 / 44%) 0px 8px 24px;*/
-        --card-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-        /*--card-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-        /*--card-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;*/
-        /* ICONS */
-        --dashboard: "\f169";
-        --post: "\f17b";
-        --media: "\f1f3";
-        --page: "\f18d";
-        --comments: "\f154";
-        --archive: "\f1c2";
-        --analytics: "\f238";
-        --appearance: "\f1ec";
-        --plugins: "\f117";
-        --tools: "\f136";
-        --settings: "\f21b";
-        --users: "\f26b";
-        --marketing: "\f1d7";
-        --shop: "\f222";
-        --add: "\f101";
-        --home: "\f1b0";
-        --laptop: "\f1c3";
-        --menu: "\f1cd";
-        --learn: "\f178";
-        --widgets: "\f1c6";
-        --close: "\f160";
-        --tick: "\f146";
-        --star: "\f237";
-        --content: "\f19d";
-        --menu-burger: "\f1d8";
-    }
-    
-    body {
-        font-family: 'roboto';
-        background: var(--primarycolor);
-    }
-    
-    html.wp-toolbar {
-        padding-top: 0px;
-    }
+/*  
+    Author: Gabriel Denys, Verta Digital.
+    License: Closed source
+*/
+
+
+/***** ROOT VARIABLES ******/
+
+ :root {
+    --primarycolor: #06003f;
+    --primarycoloractive: #0f0092;
+    --primarylight: #f1efff;
+    --primarylighthover: #ebe8fd;
+    --menu-font-resting: #ffffffab;
+    --submenu-darker: #06003f;
+    --wp-admin-theme-color: #0f0092!important;
+    --wp-admin-theme-color-darker-10: #06003f!important;
+    --fontfamily: "uicons-regular-rounded"!important;
+    --card-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    /* ICONS */
+    --dashboard: "\f169";
+    --post: "\f17b";
+    --media: "\f1f3";
+    --page: "\f18d";
+    --comments: "\f154";
+    --archive: "\f1c2";
+    --analytics: "\f238";
+    --appearance: "\f1ec";
+    --plugins: "\f117";
+    --tools: "\f136";
+    --settings: "\f21b";
+    --users: "\f26b";
+    --marketing: "\f1d7";
+    --shop: "\f222";
+    --add: "\f101";
+    --home: "\f1b0";
+    --laptop: "\f1c3";
+    --menu: "\f1cd";
+    --learn: "\f178";
+    --widgets: "\f1c6";
+    --close: "\f160";
+    --tick: "\f146";
+    --star: "\f237";
+    --content: "\f19d";
+    --menu-burger: "\f1d8";
+}
+
+body {
+    font-family: 'roboto';
+    background: var(--primarycolor);
+}
+
+html.wp-toolbar {
+    padding-top: 0px;
+}
+
+.woocommerce-page .wp-responsive-open #woocommerce-embedded-root,
+.woocommerce-page .wp-responsive-open #wpbody {
+    right: 0px;
+}

@@ -1,3 +1,9 @@
+/*  
+    Author: Gabriel Denys, Verta Digital.
+    License: Closed source
+*/
+
+
 /***** Page Content *****/
 
 #wpcontent {
@@ -381,9 +387,9 @@ th.sorted a,
     -webkit-order: 0;
     -ms-flex-order: 0;
     order: 0;
-    -webkit-flex: 0 1 100%;
-    -ms-flex: 0 1 100%;
-    flex: 0 1 100%;
+    -webkit-flex: 0 1 100px;
+    -ms-flex: 0 1 100px;
+    flex: 0 1 100px;
     -webkit-align-self: auto;
     -ms-flex-item-align: auto;
     align-self: auto;
@@ -395,6 +401,7 @@ th.sorted a,
 
 .row-actions {
     left: 0px;
+    font-weight: 300;
 }
 
 input[type=checkbox]:checked::before {
@@ -457,7 +464,7 @@ p.search-box {
 }
 
 .row-title {
-    font-weight: 300;
+    font-weight: 600;
 }
 
 .wp-filter {
@@ -483,6 +490,108 @@ a:focus .media-icon img {
 .filter-links .current {
     color: var(--primarycolor);
     border-bottom: 4px solid var(--primarycolor);
+}
+
+
+/* Table*/
+
+.wp-list-table {
+    display: block;
+    background-color: transparent!important;
+}
+
+.wp-list-table>tbody,
+.wp-list-table>thead {
+    display: block;
+}
+
+.wp-list-table>tbody>tr {
+    border-radius: 10px;
+    margin-top: 10px;
+    display: flex;
+    background: white;
+    box-shadow: var(--card-shadow);
+}
+
+.wp-list-table>tfoot {
+    display: none;
+}
+
+.fixed .column-comments {
+    min-width: 24px;
+}
+
+.wp-list-table.widefat>thead>tr {
+    display: flex;
+}
+
+.updates-table tbody td.check-column,
+.widefat tbody th.check-column,
+.widefat tfoot td.check-column,
+.widefat thead td.check-column {
+    width: 30px;
+    display: flex;
+    align-items: center;
+    padding: 0px;
+}
+
+.updates-table tbody td.column-title,
+.widefat tbody td.column-title,
+.widefat tfoot td.column-title,
+.widefat thead th.column-title {
+    width: 67%;
+}
+
+
+/*Alerts*/
+
+.is-alert-update:before {
+    background-color: transparent!important;
+}
+
+#message.updated.notice,
+div.updated.js-update-details {
+    background-color: rgb(40, 156, 112);
+    color: white;
+    border: 0px;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+}
+
+.media-upload-form .notice,
+.media-upload-form div.error,
+.wrap .notice,
+.wrap div.error,
+.wrap div.updated {
+    background-color: rgb(209, 12, 78);
+    color: white;
+    border: 0px;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+}
+
+#bulk-titles div a:before,
+.notice-dismiss:before,
+.tagchecklist .ntdelbutton .remove-tag-icon:before,
+.welcome-panel .welcome-panel-close:before {
+    font-family: var(--fontfamily);
+    color: white;
+}
+
+
+/*end alert*/
+
+.wp-admin.woocommerce-page table.wp-list-table tr.type-product td.thumb img {
+    max-width: 70px!important;
+    max-height: 70px;
+}
+
+.comment-item:hover .row-actions,
+.mobile .row-actions,
+.no-js .row-actions,
+.row-actions.visible,
+tr:hover .row-actions {
+    position: relative;
 }
 
 @media screen and (max-width: 782px) {
@@ -558,17 +667,6 @@ a:focus .media-icon img {
         -ms-flex-item-align: auto;
         align-self: auto;
     }
-    .tablenav-pages.one-page {
-        -webkit-order: 0;
-        -ms-flex-order: 0;
-        order: 0;
-        -webkit-flex: 1 1 100%;
-        -ms-flex: 1 1 100%;
-        flex: 1 1 100%;
-        -webkit-align-self: auto;
-        -ms-flex-item-align: auto;
-        align-self: auto;
-    }
     .tablenav .tablenav-pages {
         margin: 0px;
     }
@@ -579,5 +677,55 @@ a:focus .media-icon img {
         padding: 15px;
         box-shadow: var(--card-shadow);
         border-radius: 10px;
+    }
+    .wp-list-table>tbody>tr,
+    thead>tr {
+        display: block;
+    }
+    .widefat tfoot td input[type=checkbox]:before,
+    .widefat th input[type=checkbox]:before,
+    .widefat thead td input[type=checkbox]:before,
+    input[type=checkbox]:checked:before {
+        margin: 0px;
+        height: 20px;
+        width: 20px;
+        margin-top: 10px;
+        margin-left: 2px;
+    }
+    .tablenav.bottom {
+        display: block!important;
+    }
+    .tablenav.bottom>.alignleft.actions {
+        display: none;
+    }
+    .tablenav.bottom .displaying-num {
+        text-align: center;
+    }
+    div.tablenav.top>div.tablenav-pages>span.pagination-links {
+        display: none;
+    }
+    .wp-list-table.widefat>thead>tr {
+        display: block;
+    }
+    .post-type-product .wp-list-table .toggle-row {
+        top: 0px;
+        position: absolute;
+    }
+    tr.entry.is-expanded {
+        display: flex;
+        flex-flow: row;
+    }
+    tr.entry.is-expanded {
+        display: flex;
+        flex-flow: column;
+        padding-bottom: 10px;
+    }
+    .wp-admin.woocommerce-page table.wp-list-table tr.type-product td.thumb img {
+        max-width: 100px!important;
+        max-height: 100px;
+    }
+    .row-actions {
+        left: 10px;
+        font-weight: 300;
     }
 }

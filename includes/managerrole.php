@@ -40,6 +40,8 @@ function edit_for_manager()
 
     }
 
+ 
+
 }
 
 add_action('init', 'edit_for_manager');
@@ -180,3 +182,5 @@ function get_woocommerce_item($needle, $haystack)
     }
     return false;
 }
+
+

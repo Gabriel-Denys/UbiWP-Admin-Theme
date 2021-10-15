@@ -2,9 +2,7 @@ jQuery('html').addClass('hidden');
 
 jQuery(document).ready(function($) {
     $('html').removeClass('hidden');
-});
 
-jQuery(document).ready(function($) {
     $('.wp-not-current-submenu > a').click(function(e) {
         $(this).unbind('click');
         e.preventDefault();
