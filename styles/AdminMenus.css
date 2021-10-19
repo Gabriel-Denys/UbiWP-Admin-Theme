@@ -203,6 +203,19 @@
     padding-left: 10px!important;
 }
 
+#adminmenu .wp-has-current-submenu ul>li,
+#adminmenu .wp-menu-open ul>li {
+    display: block;
+}
+
+.wp-submenu-head {
+    display: none!important;
+}
+
+.openmenudesktop>li {
+    display: block!important;
+}
+
 #adminmenu li.menu-top:not(.wp-menu-open):hover,
 #adminmenu li.opensub>a.menu-top:not(.wp-menu-open),
 #adminmenu li>a.menu-top:not(.wp-menu-open):focus {
@@ -222,7 +235,6 @@
 
 #toplevel_page_admin_profile {
     margin-bottom: 20px!important;
-    margin-top: auto!important;
 }
 
 .folded #toplevel_page_admin_profile>a>div.wp-menu-image.dashicons-before.dashicons-current-profile {
@@ -232,6 +244,7 @@
 
 #adminmenuwrap {
     position: fixed!important;
+    max-height: calc(100vh - 60px);
 }
 
 #adminmenu a:focus,
@@ -250,7 +263,7 @@
 #adminmenuwrap {
     top: 10px;
     bottom: 30px;
-    left: 30px;
+    left: 10px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -280,15 +293,24 @@
     background-color: var(--submenu-darker)!important;
 }
 
+#adminmenu .wp-submenu {
+    position: relative;
+    left: 0px;
+    max-height: auto;
+    top: 0px;
+}
+
 .wp-not-current-submenu .wp-submenu.wp-submenu-wrap {
     top: 0px!important;
     background-color: var(--submenu-darker);
-    max-height: 0;
+    max-height: 0px;
     top: 0px;
     display: block!important;
-    transition: max-height 0.45s ease-in-out;
+    transition: all 0.45s ease-in-out;
     position: relative;
-    left: 0px;
+    left: 0px!important;
+    padding: 0px!important;
+    overflow: hidden!important;
 }
 
 .openmenudesktop {
@@ -297,7 +319,7 @@
     left: 0px!important;
     position: relative!important;
     max-height: 500px!important;
-    transition: max-height 0.45s ease-in-out;
+    transition: all 0.45s ease-in-out;
 }
 
 .js #adminmenu .opensub .wp-submenu,
@@ -309,11 +331,27 @@
     border-radius: 10px;
 }
 
+#adminmenu .wp-submenu .wp-submenu-head {
+    display: none!important;
+}
+
 #adminmenu .wp-submenu a:focus,
 #adminmenu .wp-submenu a:hover,
 #adminmenu a:hover,
 #adminmenu li.menu-top>a:focus {
     color: white;
+}
+
+.wp-submenu a {
+    font-weight: 300;
+}
+
+#adminmenu div.wp-menu-name {
+    font-weight: 500;
+}
+
+#adminmenu .wp-submenu li.current a {
+    font-weight: 300!important;
 }
 
 #adminmenu li a:focus div.wp-menu-image:before,
@@ -361,16 +399,15 @@
     display: flex;
     /* move flex-items in column */
     flex-direction: column;
-    margin-top: 0px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 #adminmenuwrap {
     display: flex;
 }
 
-#adminmenu> :last-child {
-    margin-top: auto;
-}
+#adminmenu> :last-child {}
 
 #adminmenu div.wp-menu-image:before {
     color: white!important;
@@ -378,6 +415,24 @@
 
 #collapse-button {
     color: white;
+    position: fixed;
+    width: 160px;
+    bottom: 20px;
+    background: var(--primarycolor);
+}
+
+#collapse-button>span.collapse-button-label {
+    font-weight: 300!important;
+}
+
+.folded #collapse-button {
+    width: 40px;
+}
+
+.folded #adminmenu .wp-not-current-submenu .wp-submenu,
+.folded #adminmenu a.wp-not-current-submenu:focus+.wp-submenu {
+    position: absolute!important;
+    top: -1000em!important;
 }
 
 #collapse-button .collapse-button-icon:after {
@@ -504,7 +559,18 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
 
 #adminmenu li.menu-top {
     min-height: auto;
-    ;
+}
+
+#toplevel_page_admin_profile>ul>li.wp-submenu-head {
+    display: none!important;
+}
+
+
+/*The menu number bubbles*/
+
+#adminmenu .awaiting-mod,
+#adminmenu .update-plugins {
+    background-color: var(--primaryhighlight)!important;
 }
 
 
@@ -635,8 +701,11 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
 @media only screen and (max-width: 960px) {
     .auto-fold #wpcontent,
     .auto-fold #wpfooter {
-        margin-left: 95px;
-        width: calc(100% - 120px - 30px);
+        margin-left: 75px;
+        width: calc(100% - 120px - 10px);
+    }
+    .auto-fold #collapse-button {
+        width: 36px;
     }
     .auto-fold #toplevel_page_admin_profile>a>div.wp-menu-image.dashicons-before.dashicons-current-profile {
         height: 27px;

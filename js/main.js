@@ -3,19 +3,29 @@ jQuery('html').addClass('hidden');
 jQuery(document).ready(function($) {
     $('html').removeClass('hidden');
 
-    $('.wp-not-current-submenu > a').click(function(e) {
-        $(this).unbind('click');
+    $('.wp-has-submenu').click(function(e) {
+        //$(this).unbind('click');
         e.preventDefault();
         e.stopPropagation();
 
-        $(this).parents('li').children('.wp-submenu.wp-submenu-wrap').addClass('openmenudesktop');
-
-
-
+        if ($(this).parents('li').children('.wp-submenu.wp-submenu-wrap').hasClass("openmenudesktop")) {
+            $(this).parents('li').children('.wp-submenu.wp-submenu-wrap').removeClass('openmenudesktop');
+            console.log("closed");
+        } else {
+            $(this).parents('li').children('.wp-submenu.wp-submenu-wrap').addClass('openmenudesktop');
+            console.log("opened");
+        }
     });
 
     var url = window.location.href;
     var current_page = $(location).attr("href").split('/').pop();
+    if (current_page == "") {
+        current_page = "index.php";
+    }
+    if (current_page.includes("?")) {
+        current_page = current_page.split("?")[0];
+    }
+    console.log("current page:" + current_page);
 
     //console.log($('a[href="' + current_page + '"]').parents("li.menu-top"));
     console.log($("#adminmenu > li"));

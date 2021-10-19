@@ -7,11 +7,11 @@
 /***** Page Content *****/
 
 #wpcontent {
-    margin-left: 220px;
+    margin-left: 180px;
     margin-right: 10px;
     margin-bottom: 10px;
     height: calc(100% - 20px);
-    width: calc(100% - 30px - 220px);
+    width: calc(100% - 30px - 180px);
     background: #ffffff;
     border-radius: 10px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -33,8 +33,8 @@
 
 .folded #wpcontent,
 .folded #wpfooter {
-    margin-left: 90px;
-    width: calc(100% - 30px - 90px);
+    margin-left: 60px;
+    width: calc(100% - 30px - 60px);
 }
 
 
@@ -592,6 +592,10 @@ div.updated.js-update-details {
 .row-actions.visible,
 tr:hover .row-actions {
     position: relative;
+}
+
+.rank-math-page {
+    background: var(--primarycolor)!important;
 }
 
 @media screen and (max-width: 782px) {
