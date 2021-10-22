@@ -3,7 +3,7 @@ jQuery('html').addClass('hidden');
 jQuery(document).ready(function($) {
     $('html').removeClass('hidden');
 
-    $('.wp-has-submenu').click(function(e) {
+    $('.wp-has-submenu > a').click(function(e) {
         //$(this).unbind('click');
         e.preventDefault();
         e.stopPropagation();
@@ -31,7 +31,7 @@ jQuery(document).ready(function($) {
     console.log($("#adminmenu > li"));
     $("#adminmenu > li").removeClass("current wp-menu-open wp-has-current-submenu");
     $("#adminmenu > li").addClass("wp-not-current-submenu");
-    $("#adminmenu > li > a").removeAttr("href");
+    //$("#adminmenu > li > a").removeAttr("href");
 
     $('a[href="' + current_page + '"]').parents("li.menu-top").addClass("current wp-menu-open wp-has-current-submenu");
     $('a[href="' + current_page + '"]').parents("li.menu-top").removeClass("wp-not-current-submenu")

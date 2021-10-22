@@ -431,8 +431,7 @@
 
 .folded #adminmenu .wp-not-current-submenu .wp-submenu,
 .folded #adminmenu a.wp-not-current-submenu:focus+.wp-submenu {
-    position: absolute!important;
-    top: -1000em!important;
+    height: 0px;
 }
 
 #collapse-button .collapse-button-icon:after {

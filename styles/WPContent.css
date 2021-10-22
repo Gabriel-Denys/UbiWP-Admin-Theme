@@ -328,14 +328,74 @@ table.widefat {
     overflow: hidden;
 }
 
+
+/* Table Column Widths*/
+
+
+/*
+table.wp-list-table .column-name {
+    min-width: 20%!important;
+    width: 20%!important;
+    max-width: 20%!important;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+table.wp-list-table .column-sku {
+    min-width: 10%!important;
+    width: 10%!important;
+    max-width: 10%!important;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+*/
+
+
+/*
+.widefat td,
+.widefat th,
+#post-13>td.title.column-title.has-row-actions.column-primary.page-title {
+    display: flex!important;
+    flex-flow: column!important;
+    justify-content: center!important;
+}
+
+#post-13>td.title.column-title.has-row-actions.column-primary.page-title {
+    display: flex!important;
+    flex-flow: column!important;
+    justify-content: center!important;
+}
+
 .widefat tfoot tr td,
 .widefat tfoot tr th,
 .widefat thead tr td,
 .widefat thead tr th,
 th.sortable a,
 th.sorted a,
-.sorting-indicator:before {
+.sorting-indicator:before,
+.widefat thead tr th>span {
     color: var(--primarycolor);
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+
+table.wp-list-table .column-thumb {
+    max-width: 70px;
+    min-width: 70px;
+    padding: 0px;
+    text-align: center;
+    white-space: nowrap;
+}*/
+
+.updates-table td input,
+.widefat tfoot td input,
+.widefat th input,
+.widefat thead td input {
+    margin-top: calc(50% - 8px)!important;
 }
 
 #dashboard-widgets-wrap {
@@ -448,6 +508,26 @@ p.search-box {
     border-top-color: transparent;
 }
 
+.wp-list-table {
+    border-spacing: 0 10px;
+}
+
+#cb {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    vertical-align: top;
+}
+
+#the-list>tr>th {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#the-list>tr>td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
 .widefat thead td,
 .widefat thead th {
     border-bottom-color: transparent;
@@ -460,7 +540,7 @@ p.search-box {
 .plugins .inactive th,
 .upgrade .plugins td,
 .upgrade .plugins th {
-    box-shadow: none;
+    box-shadow: none!important;
 }
 
 .row-title {
@@ -495,45 +575,9 @@ a:focus .media-icon img {
 
 /* Table*/
 
-.wp-list-table {
-    display: block;
-    background-color: transparent!important;
-}
 
-.wp-list-table>tbody,
-.wp-list-table>thead {
-    display: block;
-}
+/*
 
-.wp-list-table>tbody>tr {
-    border-radius: 10px;
-    margin-top: 10px;
-    display: flex;
-    background: white;
-    box-shadow: var(--card-shadow);
-}
-
-.wp-list-table>tfoot {
-    display: none;
-}
-
-.fixed .column-comments {
-    min-width: 24px;
-}
-
-.wp-list-table.widefat>thead>tr {
-    display: flex;
-}
-
-.updates-table tbody td.check-column,
-.widefat tbody th.check-column,
-.widefat tfoot td.check-column,
-.widefat thead td.check-column {
-    width: 30px;
-    display: flex;
-    align-items: center;
-    padding: 0px;
-}
 
 .updates-table tbody td.column-title,
 .widefat tbody td.column-title,
@@ -541,6 +585,7 @@ a:focus .media-icon img {
 .widefat thead th.column-title {
     width: 67%;
 }
+*/
 
 
 /*Alerts*/
@@ -696,8 +741,54 @@ tr:hover .row-actions {
         margin-top: 10px;
         margin-left: 2px;
     }
+    .wp-list-table {
+        display: block;
+        background-color: transparent!important;
+    }
+    .wp-list-table>tbody,
+    .wp-list-table>thead {
+        display: block;
+    }
+    .wp-list-table>tbody>tr {
+        border-radius: 10px;
+        margin-top: 10px;
+        display: flex;
+        background: white;
+        box-shadow: var(--card-shadow);
+    }
+    .wp-list-table>tfoot {
+        display: none;
+    }
+    .fixed .column-comments {
+        min-width: 24px;
+    }
+    .wp-list-table.widefat>thead>tr {
+        display: flex;
+    }
+    .updates-table tbody td.check-column,
+    .widefat tbody th.check-column,
+    .widefat tfoot td.check-column,
+    .widefat thead td.check-column {
+        width: 30px;
+        display: flex;
+        align-items: center;
+        padding: 0px;
+    }
+    .wp-list-table tr:not(.inline-edit-row):not(.no-items) td:not(.check-column) {
+        min-width: 85%;
+        width: auto;
+        max-width: 100%;
+        padding-top: 35px;
+    }
     .tablenav.bottom {
         display: block!important;
+    }
+    body:not(.plugins-php) .row-actions {
+        gap: 0px;
+        max-width: 100%;
+    }
+    .wp-list-table td.column-primary {
+        padding-right: 10px;
     }
     .tablenav.bottom>.alignleft.actions {
         display: none;
