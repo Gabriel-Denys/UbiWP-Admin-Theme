@@ -7,6 +7,7 @@
 /***** Page Content *****/
 
 #wpcontent {
+    z-index: 99;
     margin-left: 180px;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -291,7 +292,7 @@ textarea:focus {
 }
 
 #wpwrap {
-    background-color: transparent!important;
+    background-color: var(--primarycolor)!important;
 }
 
 #tnp-wrap {
@@ -575,6 +576,10 @@ a:focus .media-icon img {
 
 /* Table*/
 
+.striped>tbody>:nth-child(odd) {
+    background-color: white!important;
+}
+
 
 /*
 
@@ -606,13 +611,40 @@ div.updated.js-update-details {
 .media-upload-form .notice,
 .media-upload-form div.error,
 .wrap .notice,
-.wrap div.error,
-.wrap div.updated {
-    background-color: rgb(209, 12, 78);
+.wrap div.updated,
+.error {
     color: white;
-    border: 0px;
+    border: 0px!important;
     border-radius: 10px;
-    box-shadow: var(--card-shadow);
+    box-shadow: var(--card-shadow)!important;
+}
+
+.media-upload-form div.error,
+.wrap div.error,
+.notice-error {
+    background-color: rgb(209, 12, 78)!important;
+}
+
+.media-upload-form div.success,
+.wrap div.success,
+.notice-success {
+    background-color: rgb(24, 179, 94)!important;
+}
+
+.media-upload-form div.warning,
+.wrap div.warning,
+.notice-warning {
+    background-color: rgb(228, 170, 10)!important;
+}
+
+.media-upload-form div.info,
+.wrap div.info,
+.notice-info {
+    background-color: var(--primaryhighlight)!important;
+}
+
+.updated>p>button {
+    color: white!important;
 }
 
 #bulk-titles div a:before,
@@ -641,6 +673,111 @@ tr:hover .row-actions {
 
 .rank-math-page {
     background: var(--primarycolor)!important;
+}
+
+
+/*Block Editor*/
+
+body:not(.is-fullscreen-mode) #editor>div.edit-post-layout.is-mode-visual.is-sidebar-opened.has-fixed-toolbar.interface-interface-skeleton.has-footer,
+body:not(.is-fullscreen-mode) #editor>div.edit-post-layout.is-mode-visual.has-fixed-toolbar.interface-interface-skeleton.has-footer,
+body:not(.is-fullscreen-mode) #editor>div.edit-post-layout {
+    width: 100%;
+    position: relative!important;
+}
+
+body:not(.is-fullscreen-mode) .interface-interface-skeleton__footer {
+    bottom: 20px;
+    padding-top: 10px;
+}
+
+body.block-editor-page #wpcontent {
+    width: calc(100% - 180px - 10px)
+}
+
+body.folded.block-editor-page #wpcontent {
+    width: calc(100% - 60px - 10px);
+    margin-left: 60px;
+}
+
+body.auto-fold.block-editor-page #wpcontent {
+    width: calc(100% - 60px - 10px);
+    margin-left: 60px;
+}
+
+
+/*
+.block-editor>#editor>.edit-post-layout {
+    left: 180px!important
+}
+
+.block-editor>#editor {
+    background: var(--primarycolor)!important;
+}
+*/
+
+.interface-interface-skeleton {
+    left: 0px!important;
+}
+
+.media-frame a,
+.view-switch a.current:before {
+    color: var(--primarycoloractive)!important;
+}
+
+.media-modal-content {
+    border-radius: 10px;
+}
+
+.media-frame.mode-grid .attachment.details:focus,
+.media-frame.mode-grid .attachment:focus,
+.media-frame.mode-grid .selected.attachment:focus {
+    box-shadow: none;
+    outline: 2px solid transparent;
+    outline-offset: -6px;
+}
+
+.wp-core-ui .attachment .thumbnail {
+    box-shadow: var(--card-shadow)!important;
+    border-radius: 10px;
+}
+
+.wp-core-ui .attachment .thumbnail:after {
+    box-shadow: none;
+}
+
+.media-frame.mode-grid .attachment.details:focus .thumbnail,
+.media-frame.mode-grid .attachment:focus .thumbnail,
+.media-frame.mode-grid .selected.attachment .thumbnail {
+    box-shadow: #0f0092 0px 0px 12px -2px, #0f0092 0px 0px 7px 0px!important;
+    outline: 2px solid transparent;
+    outline-offset: -6px;
+    overflow: hidden;
+}
+
+.media-frame.mode-grid .selected.attachment,
+.wp-core-ui .selected.attachment {
+    box-shadow: none!important;
+}
+
+.wp-core-ui .attachment-preview {
+    box-shadow: none!important;
+    background-color: white!important;
+    ;
+}
+
+.wp-core-ui .attachment.details .check,
+.wp-core-ui .attachment.selected .check:focus,
+.wp-core-ui .media-frame.mode-grid .attachment.selected .check {
+    background-color: var(--primarycoloractive)!important;
+    box-shadow: none!important;
+    border-radius: 15px;
+}
+
+@media screen and (min-width: 783px) and (max-width: 960px) {
+    /*block editor*/
+    .interface-interface-skeleton {
+        top: 0px!important;
+    }
 }
 
 @media screen and (max-width: 782px) {

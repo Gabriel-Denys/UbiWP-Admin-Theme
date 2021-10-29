@@ -22,8 +22,9 @@ jQuery(document).ready(function($) {
     if (current_page == "") {
         current_page = "index.php";
     }
-    if (current_page.includes("?")) {
+    if (current_page.includes("?") && (!current_page.includes("?post_type") && !current_page.includes("?taxonomy="))) {
         current_page = current_page.split("?")[0];
+
     }
     console.log("current page:" + current_page);
 

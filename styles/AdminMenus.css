@@ -461,7 +461,6 @@
     border-radius: 10px!important;
 }
 
-#adminmenu #toplevel_page_admin_profile.wp-has-submenu.wp-not-current-submenu:focus-within:after,
 #adminmenu #toplevel_page_admin_profile.wp-has-submenu.wp-not-current-submenu:hover:after {
     content: "\f111"!important;
     font-family: var(--fontfamily)!important;
@@ -572,6 +571,10 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
     background-color: var(--primaryhighlight)!important;
 }
 
+#wp-admin-bar-menu-toggle>a {
+    color: white!important;
+}
+
 
 /***** MOBILE OPTIMISATIONS ******/
 
@@ -588,17 +591,19 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
     .auto-fold #adminmenuwrap {
         display: block;
         left: -300px;
-        top: 0px;
+        top: 50px;
         transition: 0.5s;
+        min-height: calc(100% - 50px);
     }
     .auto-fold .wp-responsive-open #adminmenuback,
     .auto-fold .wp-responsive-open #adminmenuwrap {
         border-radius: 0px;
-        top: 0px;
+        top: 50px;
         left: 0px;
         padding-left: 20px;
         padding-right: 20px;
         transition: 0.5s;
+        min-height: calc(100% - 50px);
     }
     #wpbody {
         padding-top: 10px;
@@ -696,6 +701,12 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
 
 
 /***** SMALL SCREEN OPTIMISATIONS ******/
+
+@media only screen and (max-width: 600px) {
+    .auto-fold #adminmenu {
+        top: 0px!important;
+    }
+}
 
 @media only screen and (max-width: 960px) {
     .auto-fold #wpcontent,
