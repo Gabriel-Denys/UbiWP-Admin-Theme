@@ -576,6 +576,23 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
 }
 
 
+/*
+#toplevel_page_UbiWP {
+    background-image: url("../img/UbiLogo.svg")!important;
+    height: 30px;
+    background-size: contain!important;
+    background-repeat: no-repeat!important;
+    background-position: center!important;
+    bottom: 20px;
+    background-color: transparent!important;
+}
+
+#toplevel_page_UbiWP>a {
+    display: none;
+}
+*/
+
+
 /***** MOBILE OPTIMISATIONS ******/
 
 @media screen and (max-width: 782px) {
@@ -620,6 +637,15 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
         background-color: var(--primarycolor);
         height: 46px;
         z-index: 999999;
+        display: inline-block;
+    }
+    #mobile-admin-menu .ubi-admin-menu-toggle {
+        width: 46px;
+        float: left;
+    }
+    #mobile-admin-menu .ubi-home-icon {
+        width: 46px;
+        float: right;
     }
     #mobile-admin-menu .ubi-admin-menu-toggle:before {
         font-family: var(--fontfamily)!important;
@@ -627,7 +653,16 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
         color: rgb(255, 255, 255);
         font-size: 30px;
         line-height: 46px;
-        margin-left: 10px;
+        margin-left: 18px;
+    }
+    #mobile-admin-menu .ubi-home-icon:before {
+        font-family: var(--fontfamily)!important;
+        content: var(--home);
+        color: rgb(255, 255, 255);
+        font-size: 30px;
+        line-height: 46px;
+        float: right;
+        margin-right: 18px;
     }
     #mobile-admin-menu .ubi-admin-menu-toggle.open-admin:before {
         font-family: var(--fontfamily)!important;

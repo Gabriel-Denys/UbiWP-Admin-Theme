@@ -17,7 +17,8 @@
     --wp-admin-theme-color: #0f0092!important;
     --wp-admin-theme-color-darker-10: #06003f!important;
     --fontfamily: "uicons-regular-rounded"!important;
-    --card-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    /*--card-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;*/
+    --card-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     /* ICONS */
     --dashboard: "\f169";
     --post: "\f17b";
@@ -44,11 +45,8 @@
     --star: "\f237";
     --content: "\f19d";
     --menu-burger: "\f1d8";
-}
-
-body {
-    font-family: 'roboto';
-    background: var(--primarycolor);
+    --brush: "\f1eb";
+    --refresh: "\f20b";
 }
 
 html.wp-toolbar {
@@ -58,4 +56,91 @@ html.wp-toolbar {
 .woocommerce-page .wp-responsive-open #woocommerce-embedded-root,
 .woocommerce-page .wp-responsive-open #wpbody {
     right: 0px;
+}
+
+.wp-core-ui .button-primary,
+.wp-core-ui .button,
+.wp-core-ui .button-secondary {
+    border-color: var(--primarycoloractive);
+    background: var(--primarylight);
+    border-radius: 10px;
+    border-width: 1px!important;
+    box-shadow: var(--card-shadow);
+    color: var(--primarycoloractive);
+}
+
+.wp-core-ui .button-primary:hover,
+.wp-core-ui .button-secondary:hover,
+.wp-core-ui .button.hover,
+.wp-core-ui .button:hover {
+    border-color: var(--primarycolor);
+    background: var(--primarylighthover);
+    border-radius: 10px;
+    border-width: 1px!important;
+    color: var(--primarycolor);
+}
+
+input[type=color],
+input[type=date],
+input[type=datetime-local],
+input[type=datetime],
+input[type=email],
+input[type=month],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=time],
+input[type=url],
+input[type=week],
+select,
+textarea {
+    border-radius: 10px;
+    border: 0px solid var(--primarycolor);
+    color: #2c3338;
+    background: #ebebff;
+    box-shadow: 0px;
+}
+
+input[type=color]:focus,
+input[type=date]:focus,
+input[type=datetime-local]:focus,
+input[type=datetime]:focus,
+input[type=email]:focus,
+input[type=month]:focus,
+input[type=number]:focus,
+input[type=password]:focus,
+input[type=radio]:focus,
+input[type=search]:focus,
+input[type=tel]:focus,
+input[type=text]:focus,
+input[type=time]:focus,
+input[type=url]:focus,
+input[type=week]:focus,
+select:focus,
+textarea:focus {
+    border: 0px solid var(--primarycolor);
+    box-shadow: 0 0 0 1px var(--primarycolor);
+}
+
+input[type=checkbox]:checked::before {
+    font-family: var(--fontfamily)!important;
+    content: var(--tick);
+    color: var(--primarycoloractive);
+    height: 16px;
+    width: 16px;
+    margin: 0px;
+    margin-top: 6px;
+}
+
+input[type=checkbox],
+input[type=radio] {
+    box-shadow: rgb(149 151 165 / 44%) 0px 2px 3px;
+    border: 1px solid var(--primarycolor);
+}
+
+input[type=checkbox]:focus {
+    border: 1px solid var(--primarycolor);
+    box-shadow: 0 0 0 0px var(--primarycolor);
 }

@@ -1,0 +1,28 @@
+body {
+    background-color: var(--primarycolor);
+}
+
+body.login div#login h1 a {
+    background-image: url("../img/UbiLogo.svg")!important;
+    height: 100px;
+    width: 130px;
+    background-size: contain!important;
+    background-repeat: no-repeat!important;
+    background-position: center!important;
+}
+
+.login form {
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+}
+
+.login #backtoblog a,
+.login #nav a {
+    color: white;
+}
+
+.login #backtoblog a:hover,
+.login #nav a:hover,
+.login h1 a:hover {
+    color: var(--primaryhighlight);
+}

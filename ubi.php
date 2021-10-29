@@ -41,6 +41,7 @@ function ubi_dash_wp_admin_style()
     wp_enqueue_style('ubi_admin_menu_css', plugins_url('/styles/AdminMenus.css', __FILE__));
     wp_enqueue_style('ubi_wpcontent_css', plugins_url('/styles/WPContent.css', __FILE__));
     wp_enqueue_style('ubi_woocommerce', plugins_url('/styles/woocommerce.css', __FILE__));
+    wp_enqueue_style('ubi_customizer', plugins_url('/styles/customizer.css', __FILE__));
     $user = wp_get_current_user();
     wp_enqueue_script('ubi_js', plugins_url('/js/main.js', __FILE__));
     if (in_array('shop_manager', (array) $user->roles)) {
@@ -82,14 +83,15 @@ add_action('admin_head', 'edit_screen_meta');
 
 function blur_back()
 {
-    require_once ABSPATH . 'wp-admin/includes/class-wp-screen.php';
-    require_once ABSPATH . 'wp-admin/includes/screen.php';
-    $screen = get_current_screen();
+require_once ABSPATH . 'wp-admin/includes/class-wp-screen.php';
+require_once ABSPATH . 'wp-admin/includes/screen.php';
+$screen = get_current_screen();
 
 // This actually works, it's just hidden via css
-    WP_Screen::get('')->render_screen_meta();
+WP_Screen::get('')->render_screen_meta();
 
 }*/
+
 add_action('admin_menu', 'linked_url');
 function linked_url()
 {
@@ -126,67 +128,68 @@ function linkedurl_function()
     $submenu["admin_profile"][1][2] = "profile.php";
     $submenu["admin_profile"][2][2] = wp_logout_url(home_url());
     $submenu["admin_profile"][0][2] = home_url();
-    
-    
+
 }
 
-if (is_admin()) { 
-    function jba_disable_editor_fullscreen_by_default() {
-    $script = "jQuery( window ).load(function() { const isFullscreenMode = wp.data.select( 'core/edit-post' ).isFeatureActive( 'fullscreenMode' ); if ( isFullscreenMode ) { wp.data.dispatch( 'core/edit-post' ).toggleFeature( 'fullscreenMode' ); } });";
-    wp_add_inline_script( 'wp-blocks', $script );
-}
-add_action( 'enqueue_block_editor_assets', 'jba_disable_editor_fullscreen_by_default' );
+if (is_admin()) {
+    function jba_disable_editor_fullscreen_by_default()
+    {
+        $script = "jQuery( window ).load(function() { const isFullscreenMode = wp.data.select( 'core/edit-post' ).isFeatureActive( 'fullscreenMode' ); if ( isFullscreenMode ) { wp.data.dispatch( 'core/edit-post' ).toggleFeature( 'fullscreenMode' ); } });";
+        wp_add_inline_script('wp-blocks', $script);
+    }
+    add_action('enqueue_block_editor_assets', 'jba_disable_editor_fullscreen_by_default');
 }
 
 function custom_notification_helper($message, $type)
 {
 
-    if(!is_admin()) {
+    if (!is_admin()) {
         return false;
     }
 
     // todo: check these are valid
-    if(!in_array($type, array('error', 'info', 'success', 'warning'))) {
+    if (!in_array($type, array('error', 'info', 'success', 'warning'))) {
         return false;
     }
 
     // Store/retrieve a transient associated with the current logged in user
-    $transientName = 'admin_custom_notification_'.get_current_user_id();
+    $transientName = 'admin_custom_notification_' . get_current_user_id();
 
     // Check if this transient already exists. We can use this to add
     // multiple notifications during a single pass through our code
     $notifications = get_transient($transientName);
 
-    if(!$notifications) {
+    if (!$notifications) {
         $notifications = array(); // initialise as a blank array
     }
 
     $notifications[] = array(
         'message' => $message,
-        'type' => $type
+        'type' => $type,
     );
 
-    set_transient($transientName, $notifications);  // no need to provide an expiration, will
-                                                    // be removed immediately
+    set_transient($transientName, $notifications); // no need to provide an expiration, will
+    // be removed immediately
 
 }
 /**
  * The handler to output our admin notification messages
  */
-function custom_admin_notice_handler() {
+function custom_admin_notice_handler()
+{
 
-    if(!is_admin()) {
+    if (!is_admin()) {
         // Only process this when in admin context
         return;
     }
 
-    $transientName = 'admin_custom_notification_'.get_current_user_id();
+    $transientName = 'admin_custom_notification_' . get_current_user_id();
 
     // Check if there are any notices stored
     $notifications = get_transient($transientName);
 
-    if($notifications):
-        foreach($notifications as $notification):
+    if ($notifications):
+        foreach ($notifications as $notification):
             echo <<<HTML
 
                 <div class="notice notice-custom notice-{$notification['type']} is-dismissible">
@@ -201,11 +204,11 @@ HTML;
     delete_transient($transientName);
 
 }
-add_action( 'admin_notices', 'custom_admin_notice_handler' );
+add_action('admin_notices', 'custom_admin_notice_handler');
 
 function test_custom_admin_notices()
 {
-    if(isset($_GET['test_admin_notices'])) {
+    if (isset($_GET['test_admin_notices'])) {
         custom_notification_helper('Custom error notice', 'error');
         custom_notification_helper('Custom success notice', 'success');
         custom_notification_helper('Custom warning notice', 'warning');
@@ -217,16 +220,43 @@ function test_custom_admin_notices()
 }
 add_action('admin_init', 'test_custom_admin_notices');
 
-
 /* Custom Mobile Menu*/
 function render_mobile_admin_bar()
 {
-   ?>
+    $home_url = home_url();
+    echo <<<HTML
+
 <div id="mobile-admin-menu">
 <div class="ubi-admin-menu-toggle">
 </div>
+
+<a class="ubi-home-icon" href="$home_url"></a>
 </div>
-    <?php
+
+HTML;
 }
 add_action('admin_head', 'render_mobile_admin_bar');
+/*
+function logo_ubi()
+{
+    add_menu_page('ubiwp', 'UbiWP', 'read', 'UbiWP', '', 'dashicons-ubi-logo', 0);
+}
+add_action('admin_menu', 'logo_ubi');*/
+
+function ubi_login() {
+    wp_enqueue_style('ubi_main_css', plugins_url('/styles/styles.css', __FILE__));
+    wp_enqueue_style('custom-login', plugins_url('/styles/ubi-login.css', __FILE__)  );
+    wp_enqueue_style('uicons-rr', plugins_url('/uicons/css/uicons-regular-rounded.css', __FILE__));
+
+}
+add_action( 'login_enqueue_scripts', 'ubi_login' );
+
+
+function ubi_admin_bar()
+{
+    wp_enqueue_style('ubi_main_css', plugins_url('/styles/styles.css', __FILE__));
+    wp_enqueue_style('ubi_admin_bar_css', plugins_url('/styles/adminbar.css', __FILE__));
+    wp_enqueue_style('uicons-rr', plugins_url('/uicons/css/uicons-regular-rounded.css', __FILE__));
+}
+add_action('wp_head', 'ubi_admin_bar');
 ?>
