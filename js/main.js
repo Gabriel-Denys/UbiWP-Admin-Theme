@@ -47,6 +47,18 @@ jQuery(document).ready(function($) {
         $('a[href="' + current_page + '"]').parents("li.menu-top").removeClass("wp-not-current-submenu")
     })
 
+
+    $(".ubi-admin-menu-toggle").click(function(e) {
+        if ($(this).hasClass("open-admin")) {
+            $(this).removeClass("open-admin");
+            $("#wpwrap").removeClass("wp-responsive-open");
+
+        } else {
+            $(this).addClass("open-admin")
+            $("#wpwrap").addClass("wp-responsive-open");
+
+        }
+    })
 });
 
 window.wpNavMenuUrlUpdate = function(e) {

@@ -217,4 +217,16 @@ function test_custom_admin_notices()
 }
 add_action('admin_init', 'test_custom_admin_notices');
 
+
+/* Custom Mobile Menu*/
+function render_mobile_admin_bar()
+{
+   ?>
+<div id="mobile-admin-menu">
+<div class="ubi-admin-menu-toggle">
+</div>
+</div>
+    <?php
+}
+add_action('admin_head', 'render_mobile_admin_bar');
 ?>
