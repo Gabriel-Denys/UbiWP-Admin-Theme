@@ -8,7 +8,7 @@ Some screenshots can be seen here: https://ubiwp.com/
 
 The theme was tested on various screen sizes including phones and tablets, making for a great user experience.
 
-Many features such as custom profile pictures or simpified menus for shop managers are still work in progress and are not available in this beta.
+Many features such as custom profile pictures or simpified menus for shop managers are still work in progress and are not available in this beta. It's important to note that the Screen Meta options was removed from the beta but will be added in an upcoming version.
 
 ## Intallation
 This is simply a WordPress Plugin. All you have to do is download this repository as a Zip and install it as you would install any other plugin.
