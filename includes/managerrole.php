@@ -1,4 +1,8 @@
 <?php
+/*  
+Author: Gabriel Denys, Verta Digital.
+License: Closed source
+*/
 
 function edit_for_manager()
 {

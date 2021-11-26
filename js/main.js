@@ -1,53 +1,37 @@
+// prevent FOUC
 jQuery('html').addClass('hidden');
 
 jQuery(document).ready(function($) {
-    $('html').removeClass('hidden');
+    $('html').removeClass('hidden'); // prevent FOUC
 
+    //When clicking menu name that has a submenu, don't redirect unless the menu is folded
     $('.wp-has-submenu > a').click(function(e) {
-        //$(this).unbind('click');
-        e.preventDefault();
-        e.stopPropagation();
+        if (!$("body").hasClass("folded")) {
+            e.preventDefault();
+            e.stopPropagation();
 
-        if ($(this).parents('li').children('.wp-submenu.wp-submenu-wrap').hasClass("openmenudesktop")) {
-            $(this).parents('li').children('.wp-submenu.wp-submenu-wrap').removeClass('openmenudesktop');
-            console.log("closed");
-        } else {
-            $(this).parents('li').children('.wp-submenu.wp-submenu-wrap').addClass('openmenudesktop');
-            console.log("opened");
+            // add and remove classes responsible for open states
+            if ($(this).parents('li').children('.wp-submenu.wp-submenu-wrap').hasClass("openmenudesktop")) {
+                $(this).parents('li').children('.wp-submenu.wp-submenu-wrap').removeClass('openmenudesktop');
+            } else {
+                $(this).parents('li').children('.wp-submenu.wp-submenu-wrap').addClass('openmenudesktop');
+            }
         }
+
     });
 
-    var url = window.location.href;
-    var current_page = $(location).attr("href").split('/').pop();
-    if (current_page == "") {
-        current_page = "index.php";
-    }
-    if (current_page.includes("?") && (!current_page.includes("?post_type") && !current_page.includes("?taxonomy="))) {
-        current_page = current_page.split("?")[0];
+    //if menu has wp class open, then it should be appended the open class from ubi
+    $(".wp-menu-open").parents("li").children(".wp-submenu.wp-submenu-wrap").addClass("openmenudesktop");
 
-    }
-    console.log("current page:" + current_page);
-
-    //console.log($('a[href="' + current_page + '"]').parents("li.menu-top"));
-    console.log($("#adminmenu > li"));
+    //set all other menus to a closed state
     $("#adminmenu > li").removeClass("current wp-menu-open wp-has-current-submenu");
     $("#adminmenu > li").addClass("wp-not-current-submenu");
-    //$("#adminmenu > li > a").removeAttr("href");
 
-    $('a[href="' + current_page + '"]').parents("li.menu-top").addClass("current wp-menu-open wp-has-current-submenu");
-    $('a[href="' + current_page + '"]').parents("li.menu-top").removeClass("wp-not-current-submenu")
-        //$('a[href="' + current_page + '"]').parents("ul.wp-submenu").addClass();
+    //open menu needs to have other relevant WP classes that signify it is open
+    $(".wp-menu-open").parents("li").addClass("current wp-menu-open wp-has-current-submenu");
+    $(".wp-menu-open").parents("li").removeClass("wp-not-current-submenu")
 
-    $('a[href="' + current_page + '"]').click(function() {
-        $("#adminmenu > li").removeClass("current wp-menu-open wp-has-current-submenu");
-        $("#adminmenu > li").addClass("wp-not-current-submenu");
-        $("#adminmenu > li > a").removeAttr("href");
-
-        $('a[href="' + current_page + '"]').parents("li.menu-top").addClass("current wp-menu-open wp-has-current-submenu");
-        $('a[href="' + current_page + '"]').parents("li.menu-top").removeClass("wp-not-current-submenu")
-    })
-
-
+    //toggle the menu open and closed
     $(".ubi-admin-menu-toggle").click(function(e) {
         if ($(this).hasClass("open-admin")) {
             $(this).removeClass("open-admin");

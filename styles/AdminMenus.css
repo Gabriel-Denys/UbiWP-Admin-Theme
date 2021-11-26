@@ -1,6 +1,6 @@
 /*  
-    Author: Gabriel Denys, Verta Digital.
-    License: Closed source
+Author: Gabriel Denys, Verta Digital.
+License: Closed source
 */
 
 
@@ -227,6 +227,9 @@
     background-size: contain;
     border-radius: 100%;
     margin: 5px!important;
+    height: 36px;
+    width: 36px;
+    ;
 }
 
 #toplevel_page_admin_profile>a>div.wp-menu-name {
@@ -235,6 +238,7 @@
 
 #toplevel_page_admin_profile {
     margin-bottom: 20px!important;
+    overflow: hidden!important;
 }
 
 .folded #toplevel_page_admin_profile>a>div.wp-menu-image.dashicons-before.dashicons-current-profile {
@@ -244,7 +248,7 @@
 
 #adminmenuwrap {
     position: fixed!important;
-    max-height: calc(100vh - 60px);
+    max-height: calc(100vh - 40px);
 }
 
 #adminmenu a:focus,
@@ -262,7 +266,7 @@
 #adminmenuback,
 #adminmenuwrap {
     top: 10px;
-    bottom: 30px;
+    bottom: 10px;
     left: 10px;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -272,7 +276,8 @@
 #adminmenu .wp-menu-arrow,
 #adminmenu .wp-menu-arrow div,
 #adminmenu li.current a.menu-top:not(.toplevel_page_admin_profile),
-#adminmenu li.wp-has-current-submenu a.wp-has-current-submenu {
+#adminmenu li.wp-has-current-submenu a.wp-has-current-submenu,
+li:not(.wp-menu-open) .current.menu-top {
     background: var(--primarycoloractive)!important;
     border-radius: 10px!important;
 }
@@ -348,6 +353,7 @@
 
 #adminmenu div.wp-menu-name {
     font-weight: 500;
+    color: white!important;
 }
 
 #adminmenu .wp-submenu li.current a {
@@ -413,7 +419,7 @@
     color: white!important;
 }
 
-#collapse-button {
+#adminmenu div.wp-menu-image #collapse-button {
     color: white;
     position: fixed;
     width: 160px;
@@ -532,15 +538,6 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
     left: 140px;
 }
 
-.postbox .inside h2,
-.wrap [class$=icon32]+h2,
-.wrap h1,
-.wrap>h2:first-child {
-    font-size: 33px;
-    font-weight: 600;
-    font-family: 'Nunito', sans-serif;
-}
-
 .welcome-panel h3,
 .welcome-panel h2,
 .metabox-holder .postbox>h3,
@@ -573,6 +570,10 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
 
 #wp-admin-bar-menu-toggle>a {
     color: white!important;
+}
+
+.folded #adminmenu .wp-has-current-submenu .wp-submenu {
+    display: none!important;
 }
 
 
@@ -611,6 +612,7 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
         top: 50px;
         transition: 0.5s;
         min-height: calc(100% - 50px);
+        max-height: calc(100% - 50px);
     }
     .auto-fold .wp-responsive-open #adminmenuback,
     .auto-fold .wp-responsive-open #adminmenuwrap {
@@ -621,12 +623,16 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
         padding-right: 20px;
         transition: 0.5s;
         min-height: calc(100% - 50px);
+        max-height: calc(100% - 50px);
         display: block;
     }
     #wpbody {
         padding-top: 10px;
     }
     #wpadminbar {
+        display: none!important;
+    }
+    .iframe #mobile-admin-menu {
         display: none!important;
     }
     #mobile-admin-menu {
@@ -726,7 +732,7 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
     }
     #toplevel_page_admin_profile>a>div.wp-menu-name {
         padding-top: 10px;
-        padding-left: 40px;
+        padding-left: 48px;
     }
     #toplevel_page_admin_profile:focus,
     #toplevel_page_admin_profile:hover,
@@ -755,6 +761,11 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
         position: absolute;
         pointer-events: none;
     }
+    .auto-fold #adminmenu,
+    .auto-fold #adminmenuback,
+    .auto-fold #adminmenuwrap {
+        position: relative;
+    }
 }
 
 
@@ -769,8 +780,17 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
 @media only screen and (max-width: 960px) {
     .auto-fold #wpcontent,
     .auto-fold #wpfooter {
-        margin-left: 75px;
-        width: calc(100% - 120px - 10px);
+        margin-left: 60px;
+        width: calc(100% - 80px - 10px);
+    }
+    .woocommerce-page.auto-fold #wpcontent,
+    .woocommerce-page.auto-fold #wpfooter {
+        margin-left: 60px;
+        width: calc(100% - 60px - 10px);
+    }
+    .auto-fold .wp-submenu.wp-submenu-wrap,
+    .folded .wp-submenu.wp-submenu-wrap {
+        display: none!important;
     }
     .auto-fold #collapse-button {
         width: 36px;
@@ -778,5 +798,9 @@ ul#adminmenu a.wp-has-current-submenu.wp-menu-open.wp-has-submenu:after {
     .auto-fold #toplevel_page_admin_profile>a>div.wp-menu-image.dashicons-before.dashicons-current-profile {
         height: 27px;
         width: 27px;
+    }
+    .folded .dashicons-current-profile {
+        width: 26px!important;
+        height: 26px!important;
     }
 }

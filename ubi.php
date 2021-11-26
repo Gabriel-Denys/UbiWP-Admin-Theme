@@ -1,4 +1,5 @@
-<?php /**
+<?php 
+/**
  * Plugin Name: UbiWP Admin Panel Theme
  * Plugin URI: https://vertadigital.com
  * Description: A Better WP Admin Panel
@@ -9,8 +10,8 @@
  **/
 
 include plugin_dir_path(__FILE__) . 'includes/managerrole.php';
-/* UI for Theme */
 
+//Replace wordpress howdy with a custom welcome message
 add_filter('admin_bar_menu', 'replace_wordpress_howdy', 25);
 function replace_wordpress_howdy($wp_admin_bar)
 {
@@ -22,16 +23,6 @@ function replace_wordpress_howdy($wp_admin_bar)
     ));
 }
 
-function my_admin_page_contents()
-{
-    ?>
-        <h1>
-            <?php esc_html_e('Welcome to my custom admin page.', 'my-plugin-textdomain');?>
-        </h1>
-    <?php
-}
-
-// Load Custom CSS
 
 /* ADD CSS STYLES TO PAGE */
 function ubi_dash_wp_admin_style()
@@ -49,8 +40,38 @@ function ubi_dash_wp_admin_style()
     }
 }
 
+// Styles for the log in page
+function ubi_login() {
+    wp_enqueue_style('ubi_main_css', plugins_url('/styles/styles.css', __FILE__));
+    wp_enqueue_style('custom-login', plugins_url('/styles/ubi-login.css', __FILE__)  );
+    wp_enqueue_style('uicons-rr', plugins_url('/uicons/css/uicons-regular-rounded.css', __FILE__));
+
+}
+add_action( 'login_enqueue_scripts', 'ubi_login' );
+
+//styles for front-end admin bar
+function ubi_admin_bar()
+{
+    wp_enqueue_style('ubi_main_css', plugins_url('/styles/styles.css', __FILE__));
+    wp_enqueue_style('ubi_admin_bar_css', plugins_url('/styles/adminbar.css', __FILE__));
+    wp_enqueue_style('uicons-rr', plugins_url('/uicons/css/uicons-regular-rounded.css', __FILE__));
+}
+add_action('wp_head', 'ubi_admin_bar');
+
+
+
 add_action('admin_print_styles', 'ubi_dash_wp_admin_style');
 
+//styles for the theme customizer
+function customizer_preview() {
+    // Register my custom stylesheet
+    wp_register_style('customizer_preview', plugins_url('/styles/customizer-preview.css', __FILE__));
+    // Load my custom stylesheet
+    wp_enqueue_style('customizer_preview');
+  }
+  add_action('wp_enqueue_scripts', 'customizer_preview');
+
+//prevent FOUC on admin pages
 add_action('admin_head', 'fouc');
 function fouc()
 {
@@ -58,25 +79,23 @@ function fouc()
     ?>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&display=swap" rel="stylesheet">
+    <style type="text/css">
+        .hidden {display:none;}
+    </style>
 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;600&display=swap" rel="stylesheet">
-      <style type="text/css">
-            .hidden {display:none;}
-        </style>
-
-        <style>
-            .dashicons-current-profile
-            {
-                background-image: url(<?php echo plugin_dir_url(__FILE__) . 'img/profilepic.jpg'; ?>);
-            }
-            </style>
-
-
+    <style>
+        .dashicons-current-profile
+        {
+          background-image: url(<?php echo plugin_dir_url(__FILE__) . 'img/profilepic.jpg'; ?>);
+        }
+    </style>
     <?php
 
 }
+
 //Later need to enable screen meta
 /*
 add_action('admin_head', 'edit_screen_meta');
@@ -92,6 +111,7 @@ WP_Screen::get('')->render_screen_meta();
 
 }*/
 
+// Add a menu page that displays user profile and other options
 add_action('admin_menu', 'linked_url');
 function linked_url()
 {
@@ -109,14 +129,15 @@ function linked_url()
     add_submenu_page(
         'admin_profile',
         '', //page title
-        'Visit Site', //menu title
+        'Your Profile', //menu title
         'read', //capability,
-        'visitsite', //menu slug
-        'visit_site' //callback function
+        'profile', //menu slug
+        'visit_profile' //callback function
     );
 }
-
 add_action('admin_menu', 'linkedurl_function');
+
+//edit the profile menu to include visit site and log out
 function linkedurl_function()
 {
     global $submenu;
@@ -124,13 +145,15 @@ function linkedurl_function()
     unset($submenu["admin_profile"][2]);
     array_unshift($submenu["admin_profile"], $menu_visit);
 
-    $submenu["admin_profile"][1][0] = "Your Profile";
-    $submenu["admin_profile"][1][2] = "profile.php";
+    $submenu["admin_profile"][0][0] = "Your Profile";
+    $submenu["admin_profile"][0][2] = "/wp-admin/profile.php";
     $submenu["admin_profile"][2][2] = wp_logout_url(home_url());
-    $submenu["admin_profile"][0][2] = home_url();
+    $submenu["admin_profile"][1][0] = "Visit Site";
+    $submenu["admin_profile"][1][2] = home_url();
 
 }
 
+// disable the full page experience of the block editor
 if (is_admin()) {
     function jba_disable_editor_fullscreen_by_default()
     {
@@ -140,87 +163,7 @@ if (is_admin()) {
     add_action('enqueue_block_editor_assets', 'jba_disable_editor_fullscreen_by_default');
 }
 
-function custom_notification_helper($message, $type)
-{
-
-    if (!is_admin()) {
-        return false;
-    }
-
-    // todo: check these are valid
-    if (!in_array($type, array('error', 'info', 'success', 'warning'))) {
-        return false;
-    }
-
-    // Store/retrieve a transient associated with the current logged in user
-    $transientName = 'admin_custom_notification_' . get_current_user_id();
-
-    // Check if this transient already exists. We can use this to add
-    // multiple notifications during a single pass through our code
-    $notifications = get_transient($transientName);
-
-    if (!$notifications) {
-        $notifications = array(); // initialise as a blank array
-    }
-
-    $notifications[] = array(
-        'message' => $message,
-        'type' => $type,
-    );
-
-    set_transient($transientName, $notifications); // no need to provide an expiration, will
-    // be removed immediately
-
-}
-/**
- * The handler to output our admin notification messages
- */
-function custom_admin_notice_handler()
-{
-
-    if (!is_admin()) {
-        // Only process this when in admin context
-        return;
-    }
-
-    $transientName = 'admin_custom_notification_' . get_current_user_id();
-
-    // Check if there are any notices stored
-    $notifications = get_transient($transientName);
-
-    if ($notifications):
-        foreach ($notifications as $notification):
-            echo <<<HTML
-
-                <div class="notice notice-custom notice-{$notification['type']} is-dismissible">
-                    <p>{$notification['message']}</p>
-                </div>
-
-HTML;
-        endforeach;
-    endif;
-
-    // Clear away our transient data, it's not needed any more
-    delete_transient($transientName);
-
-}
-add_action('admin_notices', 'custom_admin_notice_handler');
-
-function test_custom_admin_notices()
-{
-    if (isset($_GET['test_admin_notices'])) {
-        custom_notification_helper('Custom error notice', 'error');
-        custom_notification_helper('Custom success notice', 'success');
-        custom_notification_helper('Custom warning notice', 'warning');
-        custom_notification_helper('Custom info notice', 'info');
-        // Simulate a redirect
-        header('Location: index.php');
-        exit;
-    }
-}
-add_action('admin_init', 'test_custom_admin_notices');
-
-/* Custom Mobile Menu*/
+/* Custom Mobile Nav Bar*/
 function render_mobile_admin_bar()
 {
     $home_url = home_url();
@@ -236,27 +179,7 @@ function render_mobile_admin_bar()
 HTML;
 }
 add_action('admin_head', 'render_mobile_admin_bar');
-/*
-function logo_ubi()
-{
-    add_menu_page('ubiwp', 'UbiWP', 'read', 'UbiWP', '', 'dashicons-ubi-logo', 0);
-}
-add_action('admin_menu', 'logo_ubi');*/
-
-function ubi_login() {
-    wp_enqueue_style('ubi_main_css', plugins_url('/styles/styles.css', __FILE__));
-    wp_enqueue_style('custom-login', plugins_url('/styles/ubi-login.css', __FILE__)  );
-    wp_enqueue_style('uicons-rr', plugins_url('/uicons/css/uicons-regular-rounded.css', __FILE__));
-
-}
-add_action( 'login_enqueue_scripts', 'ubi_login' );
 
 
-function ubi_admin_bar()
-{
-    wp_enqueue_style('ubi_main_css', plugins_url('/styles/styles.css', __FILE__));
-    wp_enqueue_style('ubi_admin_bar_css', plugins_url('/styles/adminbar.css', __FILE__));
-    wp_enqueue_style('uicons-rr', plugins_url('/uicons/css/uicons-regular-rounded.css', __FILE__));
-}
-add_action('wp_head', 'ubi_admin_bar');
+
 ?>

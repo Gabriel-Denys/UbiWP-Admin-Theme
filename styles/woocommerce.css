@@ -1,6 +1,6 @@
 /*  
-    Author: Gabriel Denys, Verta Digital.
-    License: Closed source
+Author: Gabriel Denys, Verta Digital.
+License: Closed source
 */
 
 .woocommerce-layout__header {
@@ -57,4 +57,133 @@
 table.wp-list-table span.wc-image::before {
     font-family: var(--fontfamily);
     content: var(--media);
+}
+
+#woocommerce-order-items .woocommerce_order_items_wrapper table.woocommerce_order_items tr.shipping .thumb div::before {
+    font-family: var(--fontfamily);
+    content: var(--shipping);
+}
+
+#woocommerce-order-items .woocommerce_order_items_wrapper table.woocommerce_order_items tr.fee .thumb div::before {
+    font-family: var(--fontfamily);
+    content: var(--fee);
+}
+
+.wc-wp-version-gte-53 .select2-container .select2-search--inline .select2-search__field,
+.select2-container--default .select2-selection--multiple .select2-selection__rendered li {
+    width: 100%!important;
+}
+
+#woocommerce-order-items .wc-order-data-row,
+#woocommerce-order-items .woocommerce_order_items_wrapper table.woocommerce_order_items thead th {
+    background: white!important;
+}
+
+.wc-wp-version-gte-53 .select2-dropdown {
+    width: 400px!important;
+}
+
+.wc-wp-version-gte-53 .select2-container.select2-container--focus .select2-selection--single,
+.wc-wp-version-gte-53 .select2-container.select2-container--open .select2-selection--multiple,
+.wc-wp-version-gte-53 .select2-container.select2-container--open .select2-selection--single {
+    border-color: var(--primarycoloractive);
+    box-shadow: 0 0 0 1px var(--primarycoloractive);
+}
+
+.wc-wp-version-gte-53 .select2-dropdown {
+    box-shadow: 0 0 0 1px var(--primarycoloractive), 0 2px 1px rgb(0 0 0 / 10%);
+    border-color: var(--primarycoloractive);
+}
+
+.woocommerce-help-tip::after {
+    font-family: var(--fontfamily);
+    content: var(--help);
+}
+
+#woocommerce-order-items {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#order_data .order_data_column~.order_data_column {
+    width: 30%;
+}
+
+#order_data .order_data_column {
+    width: 36%;
+}
+
+.post-type-shop_order .wp-list-table .check-column input {
+    margin-top: 1px!important;
+}
+
+.nav-tab-wrapper .nav-tab:first-child {
+    margin-left: 0px;
+    ;
+}
+
+.nav-tab-wrapper,
+.wrap h2.nav-tab-wrapper,
+h1.nav-tab-wrapper {
+    border: none;
+}
+
+.nav-tab.nav-tab-active {
+    border: none;
+    background-color: var(--primarycoloractive);
+    color: white!important;
+}
+
+.nav-tab-active:focus,
+.nav-tab-active:focus:active,
+.nav-tab-active:hover,
+.nav-tab:focus,
+.nav-tab:hover {
+    border: none;
+    background-color: var(--primaryhighlight);
+    color: white!important;
+}
+
+.nav-tab {
+    border: none;
+    background-color: var(--primaryunselected);
+    color: white;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+}
+
+.woocommerce-page .subsubsub a.current .count,
+.woocommerce-page .subsubsub a .count {
+    color: white;
+}
+
+.woocommerce-page .subsubsub a.current {
+    color: white;
+    background-color: var(--primarycoloractive);
+}
+
+.woocommerce-page .subsubsub a:hover,
+.woocommerce-page .subsubsub a:focus {
+    background-color: var(--primaryhighlight);
+    color: white!important;
+}
+
+.woocommerce-page .subsubsub {
+    margin-top: 20px;
+    text-align: left!important
+}
+
+.woocommerce-page .subsubsub li {
+    color: transparent;
+    margin-bottom: 20px;
+}
+
+.woocommerce-page .subsubsub a {
+    box-shadow: var(--card-shadow);
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--primaryunselected);
+    color: white;
+    font-weight: 300!important;
+    font-size: 13px;
 }

@@ -1,6 +1,6 @@
 /*  
-    Author: Gabriel Denys, Verta Digital.
-    License: Closed source
+Author: Gabriel Denys, Verta Digital.
+License: Closed source
 */
 
 
@@ -14,8 +14,11 @@
     --menu-font-resting: #ffffffab;
     --submenu-darker: #06003f;
     --primaryhighlight: #8b78ff;
+    --primaryunselected: #8c88af;
     --wp-admin-theme-color: #0f0092!important;
     --wp-admin-theme-color-darker-10: #06003f!important;
+    --headingfont: 'Nunito', sans-serif;
+    --bodyfont: 'Roboto';
     --fontfamily: "uicons-regular-rounded"!important;
     /*--card-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;*/
     --card-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -47,6 +50,13 @@
     --menu-burger: "\f1d8";
     --brush: "\f1eb";
     --refresh: "\f20b";
+    --desktop: "\f217";
+    --tablet: "\f241";
+    --mobile: "\f22f";
+    --preview: "\f182";
+    --shipping: "\f1ce";
+    --fee: "\f1e2";
+    --help: "\f1bc";
 }
 
 html.wp-toolbar {
@@ -80,67 +90,15 @@ html.wp-toolbar {
     color: var(--primarycolor);
 }
 
-input[type=color],
-input[type=date],
-input[type=datetime-local],
-input[type=datetime],
-input[type=email],
-input[type=month],
-input[type=number],
-input[type=password],
-input[type=search],
-input[type=tel],
-input[type=text],
-input[type=time],
-input[type=url],
-input[type=week],
-select,
-textarea {
-    border-radius: 10px;
-    border: 0px solid var(--primarycolor);
-    color: #2c3338;
-    background: #ebebff;
-    box-shadow: 0px;
+.postbox .inside h2,
+.wrap [class$=icon32]+h2,
+.wrap h1,
+.wrap>h2:first-child {
+    font-size: 33px;
+    font-weight: 600;
+    font-family: var(--headingfont);
 }
 
-input[type=color]:focus,
-input[type=date]:focus,
-input[type=datetime-local]:focus,
-input[type=datetime]:focus,
-input[type=email]:focus,
-input[type=month]:focus,
-input[type=number]:focus,
-input[type=password]:focus,
-input[type=radio]:focus,
-input[type=search]:focus,
-input[type=tel]:focus,
-input[type=text]:focus,
-input[type=time]:focus,
-input[type=url]:focus,
-input[type=week]:focus,
-select:focus,
-textarea:focus {
-    border: 0px solid var(--primarycolor);
-    box-shadow: 0 0 0 1px var(--primarycolor);
-}
-
-input[type=checkbox]:checked::before {
-    font-family: var(--fontfamily)!important;
-    content: var(--tick);
-    color: var(--primarycoloractive);
-    height: 16px;
-    width: 16px;
-    margin: 0px;
-    margin-top: 6px;
-}
-
-input[type=checkbox],
-input[type=radio] {
-    box-shadow: rgb(149 151 165 / 44%) 0px 2px 3px;
-    border: 1px solid var(--primarycolor);
-}
-
-input[type=checkbox]:focus {
-    border: 1px solid var(--primarycolor);
-    box-shadow: 0 0 0 0px var(--primarycolor);
+body {
+    font-family: var(--bodyfont);
 }
