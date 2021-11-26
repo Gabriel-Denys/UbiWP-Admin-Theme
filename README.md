@@ -17,3 +17,9 @@ You can also clone contents into a folder in the `wp-content\plugins` folder wit
 If you need a testing environment I recommend Local https://localwp.com/ it will create a WP website on your hard drive and you can place the plugin there.
 
 This plugin does not interact with the Database and all it pretty much is, is a CSS file loader with some JS - therefore it should be ok to load on your own website. 
+
+## License
+At the moment I haven't applied a license yet so treat it as closed source. Later it will probably be released under a WordPress compatible GDPL license, free of charge in the WordPress repository.
+
+## Future Development
+I haven't decided yet but I may make a premium version of this plugin if there is enough interest in the free version. I have a lot of different ideas that could be added that would make it worth a subscription. Of course our core testers would receive the premium version free of charge :smiley:
