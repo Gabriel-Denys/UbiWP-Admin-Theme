@@ -991,7 +991,6 @@ a:hover {
         box-shadow: 0 0 0 1px var(--primarycoloractive), 0 2px 1px rgb(0 0 0 / 10%);
         border-color: var(--primarycoloractive)!important;
     }
-    .wc-wp-version-gte-53 .select2-dropdown {}
     .wc-wp-version-gte-53 .select2-container.select2-container--focus .select2-selection--single,
     .wc-wp-version-gte-53 .select2-container.select2-container--open .select2-selection--multiple,
     .wc-wp-version-gte-53 .select2-container.select2-container--open .select2-selection--single {
@@ -1020,9 +1019,6 @@ a:hover {
     #woocommerce-order-downloads>div.inside>div>div.toolbar>p>span>span.selection>span>ul>li>input,
     #woocommerce-order-downloads>div.inside>div>div.toolbar>p>span>span.selection>span>ul>li {
         width: 100%!important;
-    }
-    .woocommerce-page #doaction {
-        /* margin-top: 10px!important;*/
     }
     .wc-backbone-modal .wc-backbone-modal-content {
         z-index: 9999999!important;

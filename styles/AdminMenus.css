@@ -413,8 +413,6 @@ li:not(.wp-menu-open) .current.menu-top {
     display: flex;
 }
 
-#adminmenu> :last-child {}
-
 #adminmenu div.wp-menu-image:before {
     color: white!important;
 }
