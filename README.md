@@ -10,8 +10,8 @@ The theme was tested on various screen sizes including phones and tablets, makin
 
 Many features such as custom profile pictures or simpified menus for shop managers are still work in progress and are not available in this beta. It's important to note that the Screen Meta options was removed from the beta but will be added in an upcoming version.
 
-## Intallation
-This is simply a WordPress Plugin. All you have to do is download this repository as a Zip and install it as you would install any other plugin.
+## Installation
+This is simply a WordPress Plugin. All you have to do is download this repository as a Zip and install it as you would install any other plugin. You can do this by pressing the green "Code" button and it will have an option to download the Zip. 
 
 You can also clone contents into a folder in the `wp-content\plugins` folder within your WordPress installation if you are testing this plugin on your own environment. 
 If you need a testing environment I recommend Local https://localwp.com/ it will create a WP website on your hard drive and you can place the plugin there.
