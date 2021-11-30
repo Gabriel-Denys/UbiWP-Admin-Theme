@@ -181,6 +181,42 @@ a {
     padding-bottom: 10px!important;
 }
 
+body:not(.index-php) .subsubsub a.current .count,
+body:not(.index-php) .subsubsub a .count {
+    color: white;
+}
+
+body:not(.index-php) .subsubsub a.current {
+    color: white;
+    background-color: var(--primarycoloractive);
+}
+
+body:not(.index-php) .subsubsub a:hover,
+body:not(.index-php) .subsubsub a:focus {
+    background-color: var(--primaryhighlight);
+    color: white!important;
+}
+
+body:not(.index-php) .subsubsub {
+    margin-top: 20px;
+    text-align: left!important
+}
+
+body:not(.index-php) .subsubsub li {
+    color: transparent;
+    margin-bottom: 20px;
+}
+
+body:not(.index-php) .subsubsub a {
+    box-shadow: var(--card-shadow);
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--primaryunselected);
+    color: white;
+    font-weight: 300!important;
+    font-size: 13px;
+}
+
 .welcome-panel a:before {
     font-family: var(--fontfamily)!important;
     color: var(--primarycolor)!important;
